@@ -8,7 +8,7 @@ A curated AI Agent learning roadmap for people who want to build useful, reliabl
 
 Originally curated by [陈思州](https://github.com/jjyaoao) (Datawhale 成员) <a href="https://www.xiaohongshu.com/user/profile/67b9cc34000000000e013517" target="_blank"><img alt="Static Badge" src="https://img.shields.io/badge/Rednote-小红书-e93c49"></a>
 
-## Contributors
+## Contributors（我是谁？）
 
 | Contributor | About | Contribution |
 | --- | --- | --- |
@@ -141,6 +141,8 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 - [Agent Client Protocol](https://agentclientprotocol.com/)
 
 产出：一个小型多 agent 系统，例如 research -> write -> review -> revise。
+
+**分步代码教程**：[stage-4/](stage-4/)（Python，角色契约 + supervisor router + trace，5 步递增 + 手写练习标记）
 
 ### Stage 5: Learn Skills, Protocols, And Capability Packaging
 
