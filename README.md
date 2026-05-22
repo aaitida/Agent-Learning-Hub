@@ -6,7 +6,15 @@ A curated AI Agent learning roadmap for people who want to build useful, reliabl
 
 ## Maintainer
 
-Curated by [陈思州](https://github.com/jjyaoao) (Datawhale 成员) <a href="https://www.xiaohongshu.com/user/profile/67b9cc34000000000e013517" target="_blank"><img alt="Static Badge" src="https://img.shields.io/badge/Rednote-小红书-e93c49"></a>
+Originally curated by [陈思州](https://github.com/jjyaoao) (Datawhale 成员) <a href="https://www.xiaohongshu.com/user/profile/67b9cc34000000000e013517" target="_blank"><img alt="Static Badge" src="https://img.shields.io/badge/Rednote-小红书-e93c49"></a>
+
+## Contributors（我是谁？）
+
+| Contributor | About | Contribution |
+| --- | --- | --- |
+| [KFC_LLM](https://github.com/kngwyc3) | 小红书同名，Agent 开发分享博主 | [stage-1/](stage-1/) / [stage-2/](stage-2/) 分步代码教程；[stage-3/](stage-3/) Claude Code harness 学习笔记 |
+
+> 本仓库 Fork 自 [datawhalechina/Agent-Learning-Hub](https://github.com/datawhalechina/Agent-Learning-Hub)，由 [kngwyc3/Agent-Learning-Hub](https://github.com/kngwyc3/Agent-Learning-Hub) 维护学习代码与实践笔记。
 
 ## How To Use
 
@@ -33,11 +41,11 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 
 ### Stage 0: Understand What An Agent Is
 
-- [ ] 区分 chatbot、workflow、agent、multi-agent。
-- [ ] 理解 agent 的基本循环：observe -> think -> act -> observe。
-- [ ] 明白什么时候不该用 agent：任务可预测、流程稳定、普通脚本能解决时，agent 反而增加不确定性。
-- [ ] 读完 [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)。
-- [ ] 读完 [OpenAI: A practical guide to building agents](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)。
+- [x] 区分 chatbot、workflow、agent、multi-agent。
+- [x] 理解 agent 的基本循环：observe -> think -> act -> observe。
+- [x] 明白什么时候不该用 agent：任务可预测、流程稳定、普通脚本能解决时，agent 反而增加不确定性。
+- [x] 读完 [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)。
+- [x] 读完 [OpenAI: A practical guide to building agents](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)。
 
 产出：写一页短笔记，回答「我的场景为什么需要 agent，而不是普通 workflow？」
 
@@ -57,6 +65,8 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 - [Claude Tool Use](https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/overview)
 
 产出：一个 50-150 行的最小 agent，可以选择工具、执行工具、返回最终答案。
+
+**分步代码教程**：[stage-1/](stage-1/)（Python，6 步递增 + 手写练习标记）
 
 ### Stage 2: Learn Tool Use, RAG, And Memory
 
@@ -88,6 +98,8 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 | [Letta](https://github.com/letta-ai/letta) | 面向 stateful agents 的 memory/context 平台，适合学上下文管理。 |
 
 产出：一个资料研究助手，输入主题后自动搜索、筛选、总结并输出引用链接。
+
+**分步代码教程**：[stage-2/](stage-2/)（Python，RAGFlow + mem0 + Letta，7 步递增 + 手写练习标记）
 
 ### Stage 3: Study One Modern Agent Harness
 
@@ -129,6 +141,8 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 - [Agent Client Protocol](https://agentclientprotocol.com/)
 
 产出：一个小型多 agent 系统，例如 research -> write -> review -> revise。
+
+**分步代码教程**：[stage-4/](stage-4/)（Python，角色契约 + supervisor router + trace，5 步递增 + 手写练习标记）
 
 ### Stage 5: Learn Skills, Protocols, And Capability Packaging
 
