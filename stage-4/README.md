@@ -179,7 +179,7 @@ python agent.py "写一段解释 supervisor 模式的短文"
 
 ### Day 4 — A2A 还是 Shared State
 
-阅读：[多 Agent 交互：A2A 还是共享状态？](06-a2a-vs-shared-state.md)
+阅读：[多 Agent 交互：A2A 还是共享状态？](a2a-vs-shared-state.md)
 
 你要理解：
 
