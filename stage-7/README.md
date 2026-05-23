@@ -50,6 +50,8 @@ python step02_run_eval.py
 python step03_safety_gate.py
 ```
 
+**专题文章**：[Claude Code 权限控制原理与 Stage 7 安全门禁对照](docs/claude-code-permissions.md)
+
 ---
 
 ## 1. 先定义“成功”
@@ -252,6 +254,7 @@ If action.risk_level == high:
 | `safety/approval_checklist.md` | 人工确认清单 |
 | `scripts/eval_runner.py` | eval runner，可替换成真实 agent |
 | `scripts/compare_results.py` | baseline 对比 |
+| `docs/claude-code-permissions.md` | CC 权限原理与 Stage 7 对照文章 |
 
 ---
 
