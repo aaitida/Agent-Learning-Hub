@@ -217,9 +217,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Local-only tooling and talent-plan docs (not published)
-docs/
-scripts/
+# Local-only tooling and talent-plan docs (repo root only)
+/docs/
+/scripts/
 
 # Local learning progress (hub_progress.py)
 .hub-progress.json
