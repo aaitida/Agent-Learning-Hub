@@ -362,7 +362,7 @@ python step03_safety_gate.py   # 安全门禁：block / approval / allow
 | --- | --- | --- |
 | Build From Scratch | [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code), [claw0](https://github.com/shareAI-lab/claw0), [hello-agents](https://github.com/datawhalechina/hello-agents) | agent loop、tool registry、session、context compaction、gateway、trace、subagents。 |
 | Personal / Always-On Agents | [OpenClaw](https://github.com/openclaw/openclaw), [Hermes Agent](https://github.com/NousResearch/hermes-agent), [CyberClaw](https://github.com/ttguy0707/CyberClaw) | 长运行、skills、记忆、消息入口、权限、安全审计。 |
-| Coding Agents | [Claude Code](https://code.claude.com/docs/en/overview), [OpenAI Codex](https://github.com/openai/codex), [OpenCode](https://github.com/opencode-ai/opencode), [OpenHands](https://github.com/All-Hands-AI/OpenHands), [SWE-agent](https://github.com/SWE-agent/SWE-agent) | 真实代码库编辑、shell、测试、sandbox、PR 工作流。 |
+| Coding Agents | [Claude Code](https://code.claude.com/docs/en/overview), [OpenAI Codex](https://github.com/openai/codex), [OpenCode](https://github.com/opencode-ai/opencode), [OpenHands](https://github.com/All-Hands-AI/OpenHands), [SWE-agent](https://github.com/SWE-agent/SWE-agent), [pi](https://github.com/earendil-works/pi) | 真实代码库编辑、shell、测试、sandbox、PR 工作流。 |
 | Deep Research / RAG Agents | [DeerFlow](https://github.com/bytedance/deer-flow), [LlamaIndex](https://docs.llamaindex.ai/) | 搜索、抓取、检索、rerank、引用、报告生成。 |
 | Tutorial Encyclopedias | [GenAI_Agents](https://github.com/NirDiamant/GenAI_Agents), [hello-agents](https://github.com/datawhalechina/hello-agents), [smolagents](https://github.com/huggingface/smolagents), [agents-towards-production](https://github.com/NirDiamant/agents-towards-production) | 横向看 ReAct、Plan-and-Execute、Multi-Agent、production patterns。 |
 | Browser / Multimodal Agents | [browser-use](https://github.com/browser-use/browser-use), [UI-TARS-desktop](https://github.com/bytedance/UI-TARS-desktop) | 浏览器/桌面操作、视觉理解、动作空间、失败恢复。 |
@@ -393,6 +393,7 @@ python step03_safety_gate.py   # 安全门禁：block / approval / allow
 | [LangGraph](https://langchain-ai.github.io/langgraph/) | 状态图和可控 agent 编排，仍然值得作为工程基础学习。 |
 | [Qwen-Agent](https://github.com/QwenLM/Qwen-Agent) | 国产模型生态里的工具调用、RAG、MCP agent 框架。 |
 | [Pydantic AI](https://pydantic.dev/docs/ai/core-concepts/agent/) | 类型安全和结构化输出，适合生产 Python agent。 |
+| [pi](https://github.com/earendil-works/pi) | AI agent toolkit（TypeScript），含 coding agent CLI、agent core、统一多提供商 LLM API 和 TUI 库，支持自扩展。 |
 
 ### Legacy Or Optional Frameworks
 
@@ -448,6 +449,7 @@ python step03_safety_gate.py   # 安全门禁：block / approval / allow
 | [All-Hands-AI/OpenHands](https://github.com/All-Hands-AI/OpenHands) | 开源 coding agent。 |
 | [microsoft/ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners) | 系统化入门课程。 |
 | [jjyaoao/HelloAgents](https://github.com/jjyaoao/HelloAgents) | 基于 OpenAI 原生 API 的生产级多智能体框架，覆盖 ToolResponse、上下文工程、会话持久化、子代理、TraceLogger 等。 |
+| [earendil-works/pi](https://github.com/earendil-works/pi) | TypeScript 写的 AI agent toolkit，含 pi-coding-agent CLI、pi-agent-core 运行时、pi-ai（统一多提供商 LLM API）、pi-tui（终端 UI 库），支持 Slack 机器人和 vLLM pods。 |
 
 ### Thoughtful Blogs
 
