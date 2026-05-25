@@ -4,6 +4,21 @@ Thanks for helping improve Agent Learning Hub.
 
 This repository is README-first. The best contribution is a small, high-signal change that makes the learning path clearer.
 
+## 5-Minute First PR
+
+1. Fork [kngwyc3/Agent-Learning-Hub](https://github.com/kngwyc3/Agent-Learning-Hub) and clone your fork.
+2. Pick a [`good first issue`](https://github.com/kngwyc3/Agent-Learning-Hub/issues?q=is%3Aissue+label%3A%22good+first+issue%22) or see [docs/talent-plan/GOOD_FIRST_ISSUES.md](docs/talent-plan/GOOD_FIRST_ISSUES.md).
+3. Create a branch: `git checkout -b fix/short-description`
+4. Run smoke tests for your stage:
+   ```bash
+   ./scripts/bootstrap.sh          # full smoke (optional)
+   cd stage-5 && python step04_run_smoke_cases.py
+   ```
+5. Commit with a clear message and open a PR against `main`.
+6. Fill in the PR template; link the issue with `Fixes #123` when applicable.
+
+**GitHub contributions:** ensure your commit email is [verified on GitHub](https://github.com/settings/emails). Run `./scripts/check_github_setup.sh` locally.
+
 ## Good Contributions
 
 - Add an official doc, official engineering blog, paper, benchmark, or runnable open-source repo.

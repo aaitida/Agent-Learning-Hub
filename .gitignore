@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local-only tooling and talent-plan docs (not published)
+docs/
+scripts/
+
+# Local learning progress (hub_progress.py)
+.hub-progress.json
+
+# Bootstrap virtualenv
+.venv/
+
+# Generated eval report (run stage-7 step02_run_eval.py)
+stage-7/evals/report.html
