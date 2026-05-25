@@ -4,6 +4,27 @@ A curated AI Agent learning roadmap for people who want to build useful, reliabl
 
 这个仓库把社区里优秀分享、官方博客、论文、开源项目和真实工程经验，整理成一份可以照着执行的 AI Agent 学习 todo list。
 
+## 为什么 Fork 这个仓库
+
+1. **可运行代码** — `./scripts/bootstrap.sh` 一键安装依赖并跑通 stage smoke tests
+2. **学习进度 CLI** — `python3 scripts/hub_progress.py status` 本地追踪 stage-1–7 进度
+3. **Cursor Skill 脚手架** — `python3 scripts/scaffold_skill.py --name my-skill --description "..."` 生成可安装 skill
+4. **Eval 基准包** — stage-7 输出 CSV + [HTML 报告](stage-7/evals/report.html)（运行 eval 后生成）
+
+欢迎参与 [30 天 Agent 打卡](.github/ISSUE_TEMPLATE/30-day-checkin.yml) 和 [good first issues](docs/talent-plan/GOOD_FIRST_ISSUES.md)。
+
+## Quick Start
+
+```bash
+git clone https://github.com/kngwyc3/Agent-Learning-Hub.git
+cd Agent-Learning-Hub
+chmod +x scripts/check_github_setup.sh scripts/bootstrap.sh scripts/milestone_check.sh scripts/create_good_first_issues.sh
+./scripts/check_github_setup.sh
+python3 scripts/hub_progress.py status
+```
+
+Daily rhythm: [docs/talent-plan/DAILY_ROUTINE.md](docs/talent-plan/DAILY_ROUTINE.md)
+
 **展示与入口**
 
 | 入口 | 说明 |
@@ -24,6 +45,8 @@ Agent-Learning-Hub/
   stage-5/                # Skills 能力打包（4 步 + smoke test）
   stage-6/                # Browser agent（Playwright + 安全边界）
   stage-7/                # Eval / trace / 安全门禁
+  scripts/                # bootstrap, progress CLI, skill scaffold, milestone check
+  docs/talent-plan/       # 贡献冲刺 / 社区传播 / 政策核实清单（维护者）
 ```
 
 ## Maintainer
