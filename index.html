@@ -19,6 +19,7 @@
   --accent: #2383e2;
   --accent-hover: #1a6bc1;
   --accent-light: #e8f2fb;
+  --accent-ring: rgba(35,131,226,0.16);
   --success: #0f7b3a;
   --success-bg: #e8f5ee;
   --warning: #d97706;
@@ -45,6 +46,7 @@
   --accent: #4498e0;
   --accent-hover: #5dabf0;
   --accent-light: #1a2d40;
+  --accent-ring: rgba(68,152,224,0.22);
   --success: #3cb371;
   --success-bg: #1a2f24;
   --warning: #e6a817;
@@ -56,9 +58,10 @@
 /* ===== Reset ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
-a{color:var(--accent);text-decoration:none}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;text-underline-offset:3px;transition:color 0.15s}
 a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--accent-ring);outline-offset:2px}
 ul,ol{padding-left:1.5em}
 code{font-family:var(--font-mono);font-size:0.88em;background:var(--bg-secondary);padding:2px 6px;border-radius:var(--radius-sm);border:1px solid var(--border)}
 table{width:100%;border-collapse:collapse;font-size:0.92em}
@@ -73,7 +76,7 @@ table{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden
 
 /* ===== Layout ===== */
 .layout{display:flex;min-height:100vh}
-.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-height);background:var(--bg);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;z-index:100;gap:0}
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-height);background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;z-index:100;gap:0}
 .topbar-left{display:flex;align-items:center;gap:12px;min-width:var(--sidebar-width);padding-right:16px}
 .topbar-logo{font-weight:700;font-size:1.1em;color:var(--text);white-space:nowrap}
 .topbar-center{flex:1;display:flex;align-items:center;justify-content:center;gap:4px}
@@ -83,7 +86,7 @@ table{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden
 .tab-btn.active{background:var(--accent-light);color:var(--accent);font-weight:600}
 .search-wrap{position:relative}
 .search-input{padding:6px 12px 6px 34px;border:1px solid var(--border);border-radius:20px;font-size:0.88em;font-family:var(--font);background:var(--bg-secondary);color:var(--text);width:200px;outline:none;transition:all 0.2s}
-.search-input:focus{border-color:var(--accent);width:260px;box-shadow:0 0 0 3px rgba(35,131,226,0.12)}
+.search-input:focus{border-color:var(--accent);width:260px;box-shadow:0 0 0 3px var(--accent-ring)}
 .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-tertiary);font-size:0.85em;pointer-events:none}
 .theme-btn{width:34px;height:34px;border:1px solid var(--border);border-radius:50%;background:var(--bg-card);cursor:pointer;font-size:1.1em;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
 .theme-btn:hover{background:var(--bg-hover);border-color:var(--accent)}
@@ -100,8 +103,8 @@ table{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden
 .main-inner{max-width:860px;width:100%}
 .section{display:none}
 .section.active{display:block}
-.section-title{font-size:1.6em;font-weight:700;margin-bottom:8px;color:var(--text)}
-.section-desc{color:var(--text-secondary);margin-bottom:24px;font-size:0.95em;line-height:1.7}
+.section-title{font-size:1.6em;font-weight:700;margin-bottom:8px;color:var(--text);text-wrap:pretty}
+.section-desc{color:var(--text-secondary);margin-bottom:24px;font-size:0.95em;line-height:1.7;text-wrap:pretty}
 
 /* ===== Progress ===== */
 .progress-bar-wrap{background:var(--bg-secondary);border-radius:20px;height:8px;overflow:hidden;margin:12px 0 24px}
@@ -110,10 +113,10 @@ table{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden
 .progress-stats strong{color:var(--text);font-size:1.2em}
 
 /* ===== Stage Card ===== */
-.stage-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px;box-shadow:var(--shadow);transition:box-shadow 0.2s}
-.stage-card:hover{box-shadow:var(--shadow-md)}
+.stage-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px;box-shadow:var(--shadow);transition:box-shadow 0.2s,border-color 0.2s,transform 0.2s}
+.stage-card:hover{box-shadow:var(--shadow-md);border-color:color-mix(in srgb,var(--accent) 28%,var(--border));transform:translateY(-1px)}
 .stage-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.stage-card-title{font-weight:700;font-size:1.1em;color:var(--text)}
+.stage-card-title{font-weight:700;font-size:1.1em;color:var(--text);text-wrap:pretty}
 .stage-card-badge{font-size:0.78em;padding:3px 10px;border-radius:12px;font-weight:600}
 .stage-card-badge.green{background:var(--success-bg);color:var(--success)}
 .stage-card-badge.yellow{background:var(--warning-bg);color:var(--warning)}
@@ -122,7 +125,7 @@ table{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden
 .stage-progress-fill{height:100%;background:var(--accent);border-radius:4px;transition:width 0.3s}
 
 /* ===== Checklist ===== */
-.check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);transition:background 0.12s;cursor:pointer;user-select:none}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);transition:background 0.12s,color 0.12s;cursor:pointer;user-select:none}
 .check-item:hover{background:var(--bg-hover)}
 .check-item.done .check-label{color:var(--text-tertiary);text-decoration:line-through}
 .check-item.done .check-label a{text-decoration:line-through}
@@ -135,8 +138,8 @@ table{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden
 .sub-content{padding:8px 0 8px 30px;color:var(--text-secondary);font-size:0.9em}
 
 /* ===== Project Ladder ===== */
-.ladder-card{display:flex;align-items:center;gap:16px;padding:14px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;box-shadow:var(--shadow);cursor:pointer;transition:all 0.15s;user-select:none}
-.ladder-card:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}
+.ladder-card{display:flex;align-items:center;gap:16px;padding:14px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;box-shadow:var(--shadow);cursor:pointer;transition:box-shadow 0.15s,border-color 0.15s,transform 0.15s;user-select:none}
+.ladder-card:hover{box-shadow:var(--shadow-md);border-color:var(--accent);transform:translateY(-1px)}
 .ladder-card.done{opacity:0.6}
 .ladder-card.done .ladder-title{text-decoration:line-through}
 .ladder-num{width:32px;height:32px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9em;flex-shrink:0;color:var(--text-secondary)}
@@ -160,6 +163,18 @@ table{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden
 .info-card-title{font-weight:600;font-size:0.92em;margin-bottom:6px;color:var(--text)}
 .info-card-body{font-size:0.88em;color:var(--text-secondary);line-height:1.6}
 .info-card-body a{color:var(--accent)}
+
+/* ===== Author Footer ===== */
+.author-footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--border)}
+.author-kicker{font-size:0.78em;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);font-weight:700;margin-bottom:10px}
+.author-card{display:grid;grid-template-columns:72px 1fr;gap:18px;align-items:start;background:linear-gradient(180deg,var(--bg-card),var(--bg-secondary));border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:var(--shadow-md)}
+.author-avatar{width:72px;height:72px;border-radius:18px;background:var(--accent-light);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.35em;letter-spacing:-0.05em;border:1px solid color-mix(in srgb,var(--accent) 20%,var(--border))}
+.author-name{font-size:1.35em;font-weight:800;letter-spacing:-0.02em;color:var(--text);line-height:1.2}
+.author-role{color:var(--text-secondary);font-size:0.92em;margin-top:4px}
+.author-summary{color:var(--text);margin-top:14px;font-size:0.94em;line-height:1.75;text-wrap:pretty}
+.author-focus{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.author-chip{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);font-size:0.82em;font-weight:600}
+.author-note{margin-top:14px;color:var(--text-secondary);font-size:0.88em;line-height:1.65}
 
 /* ===== Priority Table ===== */
 .priority-grid{display:grid;grid-template-columns:auto 1fr auto;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;box-shadow:var(--shadow)}
@@ -201,6 +216,8 @@ mark{background:rgba(255,200,0,0.35);color:inherit;border-radius:2px;padding:0 2
   table,.resource-table-wrap{font-size:0.8em}
   th,td{padding:8px 10px}
   .info-cards{grid-template-columns:1fr}
+  .author-card{grid-template-columns:1fr;padding:18px}
+  .author-avatar{width:60px;height:60px;border-radius:15px}
   .priority-grid{grid-template-columns:1fr}
   .priority-grid .pg-row{display:flex;flex-direction:column;border-bottom:1px solid var(--border)}
   .priority-grid .pg-row:last-child{border-bottom:none}
@@ -209,10 +226,12 @@ mark{background:rgba(255,200,0,0.35);color:inherit;border-radius:2px;padding:0 2
 
 @media(max-width:480px){
   .topbar-right{gap:4px}
+  .topbar-logo{font-size:1em;max-width:168px;overflow:hidden;text-overflow:ellipsis}
   .search-input{width:120px}
   .search-input:focus{width:150px}
   .main{padding:12px 10px 60px}
   .stage-card{padding:14px 16px}
+  .author-footer{margin-top:32px}
 }
 /* ===== Note Editor ===== */
 .note-editor{margin-top:14px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
@@ -624,6 +643,19 @@ const resourcesData = {
   }
 };
 
+const authorData = {
+  name: 'KFC_LLM',
+  role: 'xhs agent求职博主',
+  summary: '专注把 AI Agent、LLM 工程和 coding agent harness 的学习路径整理成可执行路线，让学习者能从概念、工具调用、RAG、记忆、评测一路走到真实可交付的 agent 项目。',
+  focuses: [
+    'Agent 学习路线',
+    'LLM 工程实践',
+    'Coding Agent / Harness',
+    '求职与项目作品集'
+  ],
+  note: '持续分享 AI Agent 学习路径、开源项目拆解、工程化实践和求职作品集思路，帮助更多学习者把 LLM 能力沉淀成可展示、可运行、可复盘的项目。'
+};
+
 // ===== State =====
 let currentTab = 'learn';
 let currentSidebarId = 'stage0';
@@ -768,7 +800,7 @@ function switchTab(tab) {
   else if (tab === 'ladder') currentSidebarId = 'ladder';
   else currentSidebarId = 'officialGuides';
   renderAll();
-  document.getElementById('mainContent').scrollTop = 0;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ===== Sidebar Navigation =====
@@ -778,7 +810,10 @@ function switchSidebar(id) {
   ignoreScrollSpy = true;
   renderAll();
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+  if (el) {
+    const top = window.scrollY + el.getBoundingClientRect().top - 68;
+    window.scrollTo({ top: Math.max(0, top), behavior:'smooth' });
+  }
   closeSidebar();
   setTimeout(() => { ignoreScrollSpy = false; }, 600);
 }
@@ -852,6 +887,7 @@ function renderSidebar() {
     html += '<div class="sidebar-label" style="margin-top:8px">其他</div>';
     html += `<button class="sidebar-link${currentSidebarId==='principles'?' active':''}" onclick="switchSidebar('principles')">学习原则</button>`;
     html += `<button class="sidebar-link${currentSidebarId==='contributing'?' active':''}" onclick="switchSidebar('contributing')">贡献指南</button>`;
+    html += `<button class="sidebar-link${currentSidebarId==='author'?' active':''}" onclick="switchSidebar('author')">作者信息</button>`;
   }
   container.innerHTML = html;
 }
@@ -865,6 +901,36 @@ function highlightText(text, q) {
   if (!q) return text;
   const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
+}
+
+function renderAuthorFooter(q) {
+  const focuses = Array.isArray(authorData.focuses) ? authorData.focuses : [];
+  const searchable = [
+    authorData.name,
+    authorData.role,
+    authorData.summary,
+    authorData.note,
+    ...focuses
+  ].join(' ');
+  if (q && !matchSearch(searchable, q)) return '';
+
+  const focusHtml = focuses
+    .map(item => `<span class="author-chip">${highlightText(item, q)}</span>`)
+    .join('');
+
+  return `<footer class="author-footer" id="author">
+    <div class="author-kicker">About the author</div>
+    <div class="author-card">
+      <div class="author-avatar">KFC</div>
+      <div>
+        <div class="author-name">${highlightText(authorData.name, q)}</div>
+        <div class="author-role">${highlightText(authorData.role, q)}</div>
+        <div class="author-summary">${highlightText(authorData.summary, q)}</div>
+        <div class="author-focus">${focusHtml}</div>
+        <div class="author-note">${highlightText(authorData.note, q)}</div>
+      </div>
+    </div>
+  </footer>`;
 }
 
 function renderMain(q) {
@@ -1034,9 +1100,17 @@ function renderMain(q) {
     }
   }
 
+  // Author footer
+  const authorFooter = renderAuthorFooter(q);
+  if (authorFooter) {
+    visibleCount++;
+    html += authorFooter;
+  }
+
   // No results
   if (visibleCount === 0 && q) {
-    html = `<div class="no-results show"><div class="no-results-icon">🔍</div><div>没有找到匹配 "<strong>${q}</strong>" 的内容</div><div style="color:var(--text-tertiary);margin-top:8px;font-size:0.9em">试试其他关键词，比如 "tool call"、"MCP"、"eval"</div></div>`;
+    const safeQuery = escapeHtml(q);
+    html = `<div class="no-results show"><div class="no-results-icon">🔍</div><div>没有找到匹配 "<strong>${safeQuery}</strong>" 的内容</div><div style="color:var(--text-tertiary);margin-top:8px;font-size:0.9em">试试其他关键词，比如 "tool call"、"MCP"、"eval"</div></div>`;
   }
 
   // How to use
@@ -1108,7 +1182,7 @@ function init() {
   if (window.innerWidth <= 768) mmb.style.display = 'flex';
 
   // Scroll spy
-  document.getElementById('mainContent').addEventListener('scroll', updateSidebarFromScroll, {passive:true});
+  window.addEventListener('scroll', updateSidebarFromScroll, {passive:true});
 
   // Keyboard shortcut: Ctrl+K for search
   document.addEventListener('keydown', e => {

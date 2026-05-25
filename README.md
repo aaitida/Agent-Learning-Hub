@@ -169,6 +169,8 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 
 产出：一个可复用 skill，例如 code-review、research-report、migration-helper、pdf-extraction 或 release-note-writer。
 
+**分步实践指南**：[stage-5/](stage-5/)（Skills / 协议 / 能力打包，4 天练习 + smoke test 模板）
+
 ### Stage 6: Browser And Computer-Use Agents
 
 - [ ] 理解 browser agent 和普通 API tool 的区别。
@@ -185,6 +187,8 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 - [VisualWebArena](https://arxiv.org/abs/2401.13649)
 
 产出：一个只操作公开网页的 browser agent，例如打开网页、提取信息、生成摘要。
+
+**分步实践指南**：[stage-6/](stage-6/)（Playwright / browser-use，公开网页操作 + action log + 安全边界）
 
 ### Stage 7: Evaluation, Observability, And Safety
 
@@ -204,6 +208,8 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 - [SWE-bench](https://arxiv.org/abs/2310.06770)
 
 产出：一个 agent eval 表格，至少包含 20 个任务、期望结果、实际结果、失败分类。
+
+**分步实践指南**：[stage-7/](stage-7/)（eval 数据集、trace、失败分类、安全门禁和回归测试）
 
 ### Stage 8: Ship A Real Agent
 
