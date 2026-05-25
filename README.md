@@ -332,11 +332,11 @@ python step03_safety_gate.py   # 安全门禁：block / approval / allow
 
 ### Stage 8: Ship A Real Agent
 
-- [x] 有明确用户、明确任务、明确成功标准。
-- [x] 有日志、trace、错误重试、超时、成本上限。
-- [x] 有权限边界和人工确认机制。
-- [x] 有部署方式：CLI、Web app、Slack bot、GitHub Action 或后台任务。（v1：CLI）
-- [x] 有 README：怎么运行、怎么配置 key、怎么扩展工具、有哪些限制。
+- [ ] 有明确用户、明确任务、明确成功标准。
+- [ ] 有日志、trace、错误重试、超时、成本上限。
+- [ ] 有权限边界和人工确认机制。
+- [ ] 有部署方式：CLI、Web app、Slack bot、GitHub Action 或后台任务。
+- [ ] 有 README：怎么运行、怎么配置 key、怎么扩展工具、有哪些限制。
 
 产出：一个别人能 clone 下来跑的 agent 项目。
 
