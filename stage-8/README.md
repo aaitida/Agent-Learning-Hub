@@ -13,46 +13,60 @@
 ## 能力清单（对应主 README Stage 8）
 
 - [x] 明确用户、任务、成功标准（本文档）
-- [ ] 日志、trace、错误重试、超时、成本上限 → `common.py` + `agent.py`
-- [ ] 权限边界与人工确认 → `safety.py`
-- [ ] CLI 部署 → `cli.py`
-- [ ] 运行 / 配置 / 扩展说明 → 随各 step 补全
+- [x] 日志、trace、错误重试、超时、成本上限 → `common.py` + `agent.py`
+- [x] 权限边界与人工确认 → `safety.py`
+- [x] CLI 部署 → `cli.py`
+- [x] 运行 / 配置 / 扩展说明 → 见下方快速开始
 
-## 目录规划（按 [SHIP_WORKFLOW.md](SHIP_WORKFLOW.md) 增量交付）
+## 目录
 
 ```text
 stage-8/
-  README.md           # Step 1 — 本文件
-  SHIP_WORKFLOW.md    # 增量 MR 工作流
-  .env.example        # Step 2
-  requirements.txt    # Step 3
-  common.py           # Step 4 — 配置、日志、trace、成本
-  tools.py            # Step 5 — 工具
-  safety.py           # Step 6 — 安全门禁
-  agent.py            # Step 7 — agent loop
-  cli.py              # Step 8 — CLI 入口
-  step01_smoke.py     # Step 9 — smoke test
-  traces/             # 运行后生成（gitignore）
+  README.md           # 本文件
+  SHIP_WORKFLOW.md    # 增量 MR 工作流（9 步已完成）
+  .env.example
+  requirements.txt
+  common.py           # 配置、日志、trace、成本
+  tools.py            # calculator + read_file
+  safety.py           # 安全门禁
+  agent.py            # agent loop
+  cli.py              # CLI 入口
+  step01_smoke.py     # smoke test
+  traces/             # 运行后生成
 ```
 
-## 快速开始（全部 step 完成后）
+## 快速开始
 
 ```bash
 cd stage-8
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env   # 填入 OPENAI_API_KEY
-python cli.py "读取 ../stage-1/notes.txt 并总结内容"
+
+# 无 API key 可先验证
+python step01_smoke.py
+
+# 真实运行
+python cli.py "读取 stage-1/notes.txt 并总结内容"
+
+# 高风险任务需人工确认
+python cli.py --approve "删除生产环境备份"
 ```
+
+## 扩展工具
+
+在 `tools.py` 中：
+
+1. 添加 `TOOL_SCHEMAS` 条目
+2. 实现对应函数
+3. 在 `run_tool()` 中分发
 
 ## 限制（v1）
 
-- 仅 CLI，无 Web / Bot
-- 工具集最小（读文件 + 计算），可后续扩展
-- 需要 OpenAI 兼容 API；smoke test 支持 dry-run
+- 仅 CLI，无 Web / Bot / GitHub Action
+- 工具集：读仓库内文件 + 计算器
+- 需要 OpenAI 兼容 API；`AGENT_DRY_RUN=true` 可离线 smoke
 
-## 增量开发
+## 状态
 
-**不要一次写完。** 请按 [SHIP_WORKFLOW.md](SHIP_WORKFLOW.md)：**一个文件 → 一个 MR → merge main → 下一步**。
-
-当前进度：**Step 1 完成，等待 merge 后做 Step 2。**
+**Stage 8 已完成**（Step 1–9 全部 merge）。详见 [SHIP_WORKFLOW.md](SHIP_WORKFLOW.md)。

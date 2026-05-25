@@ -229,3 +229,6 @@ __marimo__/
 
 # Generated eval report (run stage-7 step02_run_eval.py)
 stage-7/evals/report.html
+
+# Stage 8 runtime traces
+stage-8/traces/

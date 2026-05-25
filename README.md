@@ -31,7 +31,7 @@ Daily rhythm: [docs/talent-plan/DAILY_ROUTINE.md](docs/talent-plan/DAILY_ROUTINE
 | --- | --- |
 | [README.md](README.md) | 主路线图、资源索引、学习原则（本文件） |
 | [index.html](index.html) | 交互式学习页：Stage 导航、资源卡片、进度勾选 |
-| [stage-1/](stage-1/) … [stage-7/](stage-7/) | 分阶段可运行代码与分步教程 |
+| [stage-1/](stage-1/) … [stage-8/](stage-8/) | 分阶段可运行代码与分步教程 |
 
 **仓库结构**
 
@@ -45,6 +45,7 @@ Agent-Learning-Hub/
   stage-5/                # Skills 能力打包（4 步 + smoke test）
   stage-6/                # Browser agent（Playwright + 安全边界）
   stage-7/                # Eval / trace / 安全门禁
+  stage-8/                # 可部署 CLI Agent（trace / 安全 / 成本上限）
   scripts/                # bootstrap, progress CLI, skill scaffold, milestone check
   docs/talent-plan/       # 贡献冲刺 / 社区传播 / 政策核实清单（维护者）
 ```
@@ -331,13 +332,33 @@ python step03_safety_gate.py   # 安全门禁：block / approval / allow
 
 ### Stage 8: Ship A Real Agent
 
-- [ ] 有明确用户、明确任务、明确成功标准。
-- [ ] 有日志、trace、错误重试、超时、成本上限。
-- [ ] 有权限边界和人工确认机制。
-- [ ] 有部署方式：CLI、Web app、Slack bot、GitHub Action 或后台任务。
-- [ ] 有 README：怎么运行、怎么配置 key、怎么扩展工具、有哪些限制。
+- [x] 有明确用户、明确任务、明确成功标准。
+- [x] 有日志、trace、错误重试、超时、成本上限。
+- [x] 有权限边界和人工确认机制。
+- [x] 有部署方式：CLI、Web app、Slack bot、GitHub Action 或后台任务。（v1：CLI）
+- [x] 有 README：怎么运行、怎么配置 key、怎么扩展工具、有哪些限制。
 
 产出：一个别人能 clone 下来跑的 agent 项目。
+
+**分步代码教程**：[stage-8/](stage-8/)（CLI agent、安全门禁、trace、成本上限、smoke test）
+
+```bash
+cd stage-8
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env          # 填入 OPENAI_API_KEY
+python step01_smoke.py        # 无 API key 可先跑
+python cli.py "读取 stage-1/notes.txt 并总结"
+```
+
+| 产出 | 路径 |
+| --- | --- |
+| 配置模板 | `stage-8/.env.example` |
+| Agent loop | `stage-8/agent.py` |
+| CLI 入口 | `stage-8/cli.py` |
+| 安全门禁 | `stage-8/safety.py` |
+| Trace 日志 | `stage-8/traces/*.jsonl`（运行后生成） |
+| Smoke test | `stage-8/step01_smoke.py` |
 
 ## Project Ladder
 
