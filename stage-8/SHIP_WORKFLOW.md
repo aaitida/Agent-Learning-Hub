@@ -9,15 +9,16 @@
 
 | Step | 文件 | 状态 | MR |
 |------|------|------|-----|
-| 1 | [README.md](README.md) | 🔄 进行中 | — |
-| 2 | `.env.example` | ⬜ 待做 | — |
-| 3 | `requirements.txt` | ⬜ 待做 | — |
-| 4 | `common.py` | ⬜ 待做 | — |
-| 5 | `tools.py` | ⬜ 待做 | — |
-| 6 | `safety.py` | ⬜ 待做 | — |
-| 7 | `agent.py` | ⬜ 待做 | — |
-| 8 | `cli.py` | ⬜ 待做 | — |
-| 9 | `step01_smoke.py` | ⬜ 待做 | — |
+| 1 | [README.md](README.md) | ✅ 完成 | #5 |
+| 2 | `.env.example` | ✅ 完成 | #6 |
+| 3 | `requirements.txt` | ✅ 完成 | #7 |
+| 4 | `common.py` | ✅ 完成 | #8 |
+| 5 | `tools.py` | ✅ 完成 | #9 |
+| 6 | `safety.py` | ✅ 完成 | #10 |
+| 7 | `agent.py` | ✅ 完成 | #11 |
+| 8 | `cli.py` | ✅ 完成 | #12 |
+| 9 | `step01_smoke.py` | ✅ 完成 | #13 |
+| 10 | 主 README Stage 8 区块 | 🔄 进行中 | — |
 
 ---
 
