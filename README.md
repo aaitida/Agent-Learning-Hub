@@ -58,7 +58,7 @@ Originally curated by [陈思州](https://github.com/jjyaoao) (Datawhale 成员)
 
 | Contributor | About | Contribution |
 | --- | --- | --- |
-| [KFC_LLM](https://github.com/kngwyc3) | 小红书同名，Agent 开发分享博主 | [stage-1/](stage-1/) / [stage-2/](stage-2/) 分步代码教程；[stage-3/](stage-3/) Claude Code harness 学习笔记 |
+| [KFC_LLM](https://github.com/kngwyc3) | 小红书同名，Agent 开发分享博主 | [stage-1/](stage-1/)–[stage-8/](stage-8/) 分步代码与实践（agent loop、RAG、Claude Code 导读、Skills、Browser agent、Eval、可部署 CLI Agent） |
 
 > 本仓库 Fork 自 [datawhalechina/Agent-Learning-Hub](https://github.com/datawhalechina/Agent-Learning-Hub)，由 [kngwyc3/Agent-Learning-Hub](https://github.com/kngwyc3/Agent-Learning-Hub) 维护学习代码与实践笔记。
 
