@@ -2,7 +2,29 @@
 
 A curated AI Agent learning roadmap for people who want to build useful, reliable agents instead of collecting random links.
 
-这个仓库只维护一个核心展示面：README。目标是把社区里优秀分享、官方博客、论文、开源项目和真实工程经验，整理成一份可以照着执行的 AI Agent 学习 todo list。
+这个仓库把社区里优秀分享、官方博客、论文、开源项目和真实工程经验，整理成一份可以照着执行的 AI Agent 学习 todo list。
+
+**展示与入口**
+
+| 入口 | 说明 |
+| --- | --- |
+| [README.md](README.md) | 主路线图、资源索引、学习原则（本文件） |
+| [index.html](index.html) | 交互式学习页：Stage 导航、资源卡片、进度勾选 |
+| [stage-1/](stage-1/) … [stage-7/](stage-7/) | 分阶段可运行代码与分步教程 |
+
+**仓库结构**
+
+```text
+Agent-Learning-Hub/
+  index.html              # 交互式学习页
+  README.md               # 主路线图（本文件）
+  stage-1/                # 最小 agent loop（Python，6 步）
+  stage-2/                # RAG + 记忆（Python，7 步）
+  stage-3/claude-code-docs/  # Claude Code 源码 12 章导读
+  stage-5/                # Skills 能力打包（4 步 + smoke test）
+  stage-6/                # Browser agent（Playwright + 安全边界）
+  stage-7/                # Eval / trace / 安全门禁
+```
 
 ## Maintainer
 
@@ -18,10 +40,30 @@ Originally curated by [陈思州](https://github.com/jjyaoao) (Datawhale 成员)
 
 ## How To Use
 
-- 如果你是新手：按「Learning Todo List」从上到下做，每完成一项就打勾。
+- 打开 [index.html](index.html) 浏览 Stage 导航和资源卡片，或在本地 `python -m http.server` 后访问。
+- 如果你是新手：按「Learning Todo List」从上到下做，每完成一项就打勾；Stage 1–2 有分步代码可直接跑。
 - 如果你已经会 LLM 应用：从 Stage 2 或 Stage 3 开始，重点补 Agent loop、工具调用、评测和工程化。
 - 如果你想做项目：直接看「Project Ladder」，每一档做一个可运行作品。
 - 如果你只想找资料：看「Curated Resources」，优先读官方文档和经典论文。
+
+**推荐学习路径（有代码的阶段）**
+
+```bash
+# Stage 1：最小 agent loop
+cd stage-1 && pip install -r requirements.txt && python step01_chat.py
+
+# Stage 2：RAG + 记忆
+cd stage-2 && pip install -r requirements.txt && python step01_memory_layers.py
+
+# Stage 5：Skills
+cd stage-5 && python step01_boundaries.py
+
+# Stage 6：Browser agent（需 Playwright）
+cd stage-6 && pip install -r requirements.txt && python step01_validate_url.py https://example.com
+
+# Stage 7：Eval + 安全门禁
+cd stage-7 && python step01_load_tasks.py && python step02_run_eval.py
+```
 
 ## What To Learn Now
 
@@ -124,6 +166,14 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 
 产出：一个可调试的 agent harness demo，包含 README、运行步骤、示例输入输出和失败记录。
 
+**Claude Code 源码导读**：[stage-3/claude-code-docs/](stage-3/claude-code-docs/)（12 章：Tool 系统、Query 引擎、权限、MCP、状态管理、CLI 入口等）
+
+| 章节 | 重点 |
+| --- | --- |
+| [06-权限系统.md](stage-3/claude-code-docs/06-权限系统.md) | PermissionMode、规则引擎、权限检查链路 |
+| [01-Tool系统.md](stage-3/claude-code-docs/01-Tool系统.md) | Tool 接口、buildTool、BashTool |
+| [03-Agent系统.md](stage-3/claude-code-docs/03-Agent系统.md) | 子 Agent、Fork Worktree、蜂群协作 |
+
 ### Stage 4: Multi-Agent Is Coordination, Not Magic
 
 - [ ] 理解 planner / executor / reviewer / critic / router 等常见角色。
@@ -169,7 +219,21 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 
 产出：一个可复用 skill，例如 code-review、research-report、migration-helper、pdf-extraction 或 release-note-writer。
 
-**分步实践指南**：[stage-5/](stage-5/)（Skills / 协议 / 能力打包，4 天练习 + smoke test 模板）
+**分步代码教程**：[stage-5/](stage-5/)（Skills / 协议 / 能力打包，4 步递增 + smoke test）
+
+```bash
+cd stage-5
+python step01_boundaries.py      # Skill vs Tool / Prompt / MCP
+python step02_load_skill.py        # 加载并校验 SKILL.md
+python step03_validate_report.py   # 验收报告格式
+python step04_run_smoke_cases.py   # smoke test
+```
+
+| 产出 | 路径 |
+| --- | --- |
+| 示例 skill | `stage-5/my-skill/SKILL.md` |
+| 报告模板 | `stage-5/my-skill/templates/review_report.md` |
+| smoke 脚本 | `stage-5/my-skill/scripts/smoke_check.py` |
 
 ### Stage 6: Browser And Computer-Use Agents
 
@@ -188,7 +252,21 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 
 产出：一个只操作公开网页的 browser agent，例如打开网页、提取信息、生成摘要。
 
-**分步实践指南**：[stage-6/](stage-6/)（Playwright / browser-use，公开网页操作 + action log + 安全边界）
+**分步代码教程**：[stage-6/](stage-6/)（Playwright，公开网页操作 + action log + 安全边界）
+
+```bash
+cd stage-6
+pip install -r requirements.txt && playwright install chromium
+python step01_validate_url.py https://example.com   # URL 安全校验（无需 Playwright）
+python step02_observe_page.py https://example.com   # 页面观察
+python step03_run_agent.py https://example.com      # 完整 browser agent
+```
+
+| 产出 | 路径 |
+| --- | --- |
+| Browser agent | `stage-6/browser-agent/agent.py` |
+| 安全策略 | `stage-6/browser-agent/policies.md` |
+| 公开测试用例 | `stage-6/browser-agent/tests/public_cases.md` |
 
 ### Stage 7: Evaluation, Observability, And Safety
 
@@ -209,7 +287,24 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 
 产出：一个 agent eval 表格，至少包含 20 个任务、期望结果、实际结果、失败分类。
 
-**分步实践指南**：[stage-7/](stage-7/)（eval 数据集、trace、失败分类、安全门禁和回归测试）
+**分步代码教程**：[stage-7/](stage-7/)（eval 数据集、trace、失败分类、安全门禁和回归测试）
+
+```bash
+cd stage-7
+python step01_load_tasks.py    # 加载 20 条 eval 任务
+python step02_run_eval.py      # 运行 eval，写入 results.csv + trace
+python step03_safety_gate.py   # 安全门禁：block / approval / allow
+```
+
+| 产出 | 路径 |
+| --- | --- |
+| Eval 任务集（20 条） | `stage-7/evals/tasks.csv` |
+| Eval 结果 | `stage-7/evals/results.csv` |
+| 失败分类 | `stage-7/evals/failure_taxonomy.md` |
+| 安全门禁 | `stage-7/safety_gate.py` |
+| 安全策略 | `stage-7/safety/policy.md` |
+
+**专题文章**：[Claude Code 权限控制原理与 Stage 7 安全门禁对照](stage-7/docs/claude-code-permissions.md)
 
 ### Stage 8: Ship A Real Agent
 
@@ -365,9 +460,11 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 
 ### Claude Code Study Path
 
-Claude Code 是当前最值得拆解的 coding agent 产品之一。推荐按“官方文档 -> 复刻项目 -> 架构解析 -> 工程对照”的顺序学习：
+Claude Code 是当前最值得拆解的 coding agent 产品之一。推荐按“官方文档 -> 本仓库源码导读 -> 复刻项目 -> 架构解析 -> 工程对照”的顺序学习：
 
 - 读官方文档，理解 hooks、subagents、MCP、GitHub Actions、permissions。
+- 读本仓库 [stage-3/claude-code-docs/](stage-3/claude-code-docs/)，按模块理解 Tool、Query、权限、MCP、状态管理。
+- 读 [Stage 7 权限对照文章](stage-7/docs/claude-code-permissions.md)，把 CC 权限链路与 `safety_gate.py` 对齐。
 - 读公开分析论文，抽象出 agent harness 的设计空间。
 - 跟随 [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) 从零复刻核心机制。
 - 对照 [hello-agents](https://github.com/datawhalechina/hello-agents)、[OpenClaw](https://github.com/openclaw/openclaw)、[Hermes Agent](https://github.com/NousResearch/hermes-agent) 这些开源项目，学习工程化实现。
@@ -376,6 +473,8 @@ Claude Code 是当前最值得拆解的 coding agent 产品之一。推荐按“
 | --- | --- |
 | [Claude Code Common Workflows](https://code.claude.com/docs/en/tutorials) | 官方工作流教程，适合学日常使用和项目协作。 |
 | [Claude Code Overview](https://code.claude.com/docs/en/overview) | 官方入口，理解产品能力和命令行工作方式。 |
+| [stage-3/claude-code-docs/](stage-3/claude-code-docs/) | 本仓库 12 章 Claude Code 源码导读（Tool、权限、MCP、Agent 系统等）。 |
+| [stage-7/docs/claude-code-permissions.md](stage-7/docs/claude-code-permissions.md) | CC 权限原理与 Stage 7 安全门禁对照。 |
 | [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) | 从零复刻 Claude Code-like agent，适合学 harness 最小实现。 |
 | [Claude Code 源码解析](https://claudecoding.dev/) | 中文架构解读，适合按模块理解实现思路。 |
 | [Claude Code 源码分析地图](https://code.claudecn.com/) | 用地图方式拆解 agent loop、工具、命令和多代理协作。 |

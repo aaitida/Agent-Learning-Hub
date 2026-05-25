@@ -1,5 +1,7 @@
 # Agent Learning Hub 总览
 
+> 本文档面向维护者与 AI Agent：快速理解仓库目标、目录结构、各 Stage 关系与修改原则。人类学习者请优先读 [README.md](README.md) 和 [index.html](index.html)。
+
 ## 仓库目标
 
 这个仓库的核心目标，是把 AI Agent 学习路径整理成一份可执行、可打勾、可落地的 roadmap，而不是单纯堆链接。
@@ -7,117 +9,220 @@
 它强调的不是“花哨的多智能体演示”，而是更接近真实生产的能力：
 
 - 最小 agent loop
-- 工具调用
+- 工具调用与严格 schema
 - RAG 与引用
-- 长期记忆
-- 上下文压缩
+- 长期记忆与上下文压缩
 - harness engineering
+- Skills / MCP / A2A / ACP 等能力封装与协议
+- Browser / computer-use agent
 - 权限与安全边界
-- 评测与可观测性
-- skills / MCP / A2A / ACP 等能力封装与协议
+- 评测、trace 与可观测性
+
+## 展示入口
+
+| 入口 | 路径 | 用途 |
+| --- | --- | --- |
+| 主路线图 | [README.md](README.md) | Stage 0–8 学习清单、Project Ladder、精选资源 |
+| 交互式学习页 | [index.html](index.html) | Stage 导航、资源卡片、进度勾选（本地 `python -m http.server` 访问） |
+| 仓库总览 | [agent.md](agent.md) | 本文件：结构说明、Stage 映射、维护原则 |
+| 分步教程 | [stage-1/](stage-1/) … [stage-7/](stage-7/) | 可运行代码与递增练习 |
 
 ## 仓库结构
 
-### `README.md`
+```text
+Agent-Learning-Hub/
+  README.md                 # 主路线图
+  index.html                # 交互式学习页
+  agent.md                  # 本总览文档
+  CONTRIBUTING.md           # 贡献指南
+  stage-1/                  # 最小 agent loop（6 步 Python）
+  stage-2/                  # RAG + 记忆（7 步 Python）
+  stage-3/claude-code-docs/ # Claude Code 源码 12 章导读
+  stage-5/                  # Skills 能力打包（4 步 + smoke test）
+  stage-6/                  # Browser agent（Playwright + 安全边界）
+  stage-7/                  # Eval / trace / 安全门禁
+```
 
-仓库主入口，README-first。包含：
+> **注意**：Stage 4（Multi-Agent）在主 README 有学习清单，本仓库暂无独立 `stage-4/` 代码目录；可参考 `feature/wyc` 分支或外部项目自行实践。
 
-- 学习目标
-- Stage 0 到 Stage 8 的学习路径
-- 项目阶梯 `Project Ladder`
-- 精选资源列表
-- 学习原则与贡献原则
+---
 
-### `stage-1/`
+## 各 Stage 说明
 
-最小 Agent Loop 教程。
+### `stage-1/` — 最小 Agent Loop
 
-核心内容：
+**目标**：用 Python + OpenAI 兼容 API 搭出「能选工具、能执行、能循环」的最小 Agent。
 
-- LLM 普通对话
-- 结构化 JSON 输出
-- 工具 schema 定义
-- tool call 解析与执行
-- agent loop
-- 最大步数、超时、错误处理
+| 步骤 | 文件 | 内容 |
+| --- | --- | --- |
+| 1 | `step01_chat.py` | LLM 普通对话 |
+| 2 | `step02_json.py` | 结构化 JSON 输出 |
+| 3 | `step03_tools_def.py` | 工具 schema 定义 |
+| 4 | `step04_one_round_tool.py` | 单轮 tool call 解析与执行 |
+| 5 | `step05_agent_loop.py` | 完整 agent loop |
+| 产出 | `agent.py` | 50–150 行最小 agent，含步数/超时/错误处理 |
 
-最终产出：
+```bash
+cd stage-1 && pip install -r requirements.txt && cp .env.example .env
+python step01_chat.py
+```
 
-- 一个 50 到 150 行的最小 agent
+---
 
-### `stage-2/`
+### `stage-2/` — 工具、RAG 与记忆
 
-在 Stage 1 之上加入工具使用、RAG 和记忆。
+**目标**：在 Stage 1 之上加入检索增强、长期记忆和上下文压缩。
 
-核心内容：
+| 模块 | 文件 / 工具 | 内容 |
+| --- | --- | --- |
+| 记忆分层 | `step01_memory_layers.py` | 短期 / 会话 / 长期记忆区分 |
+| RAGFlow | `step02`–`step04` | chunk / embed / retrieve / 带引用回答 |
+| mem0 | `step05_mem0_memory.py` | 长期记忆写入与召回 |
+| Letta | `step06_letta_compaction.py` | 上下文压缩与长对话管理 |
+| RAG as Tool | `step07_rag_as_tool.py` | 把 RAG 封装成 agent 工具 |
+| 产出 | `agent.py` | 带引用的资料研究助手 |
 
-- RAGFlow：chunk / embed / retrieve / answer with citations
-- mem0：长期记忆
-- Letta：上下文压缩与长对话管理
-- 短期上下文、会话记忆、长期记忆的区分
-- 失败处理、空结果、幻觉引用控制
+```bash
+cd stage-2 && pip install -r requirements.txt && python step01_memory_layers.py
+```
 
-最终产出：
+---
 
-- 一个带引用的资料研究助手
+### `stage-3/claude-code-docs/` — Claude Code Harness 导读
 
-### `stage-3/claude-code-source-code/`
+**目标**：研究现代 coding agent harness 的工程实现，不是教学脚本，而是「生产级样本」的拆解文档。
 
-Claude Code v2.1.88 的源码分析仓库。
+> 路径已从旧名 `claude-code-source-code/` 更正为 `claude-code-docs/`。
 
-核心内容：
+| 章节 | 文件 | 核心内容 |
+| --- | --- | --- |
+| 00 | [00-概览与项目结构.md](stage-3/claude-code-docs/00-概览与项目结构.md) | 架构全貌、技术栈、最小 Agent 循环 |
+| 01 | [01-Tool系统.md](stage-3/claude-code-docs/01-Tool系统.md) | Tool 接口、buildTool、40+ 工具、BashTool |
+| 02 | [02-Query引擎.md](stage-3/claude-code-docs/02-Query引擎.md) | Agent 主循环、流式、Auto Compact |
+| 03 | [03-Agent系统.md](stage-3/claude-code-docs/03-Agent系统.md) | 子 Agent、Fork Worktree、蜂群协作 |
+| 04 | [04-Task系统.md](stage-3/claude-code-docs/04-Task系统.md) | TaskType、状态机、磁盘输出流 |
+| 05 | [05-状态管理.md](stage-3/claude-code-docs/05-状态管理.md) | AppState、Store 模式、Speculation |
+| 06 | [06-权限系统.md](stage-3/claude-code-docs/06-权限系统.md) | PermissionMode、规则引擎、DenialTracking |
+| 07 | [07-MCP集成.md](stage-3/claude-code-docs/07-MCP集成.md) | MCP 协议、ToolSearch 延迟加载 |
+| 08–11 | 服务层 / UI 层 / CLI / 设计精髓 | 压缩、Analytics、TUI、设计模式 |
 
-- Claude Code 的 CLI / query engine / tool system / permission flow
-- 40+ 工具与权限链路
-- subagents、hooks、MCP、skills、context compaction
-- telemetry、remote control、feature flags、killswitches
-- 深度分析文档：隐私、隐藏功能、卧底模式、远程控制、未来路线图
+**与 Stage 7 的衔接**：[stage-7/docs/claude-code-permissions.md](stage-7/docs/claude-code-permissions.md) 把 CC 权限链路与 `safety_gate.py` 做了对照说明。
 
-它更像一份“现代 coding agent harness 的研究样本”，不是教学脚本。
+---
 
-## 主学习路线
+### Stage 4 — Multi-Agent 协调（仅 README 清单）
 
-### Stage 0
+**目标**：理解多 agent 是协调问题，不是魔法。
 
-先理解什么是 agent：
+- planner / executor / reviewer / critic / router 角色划分
+- supervisor 或 graph 管理，避免 agent 随意聊天
+- 职责边界、输入输出 schema、停止条件
+- 循环、争论、上下文膨胀的处理
 
-- chatbot、workflow、agent、多 agent 的区别
-- observe -> think -> act -> observe 循环
-- 什么时候不该用 agent
+推荐阅读：Claude Code Subagents、Hooks、Google ADK、A2A、ACP（见主 README Stage 4 章节）。
 
-### Stage 1
+---
 
-先做出最小可运行 agent：
+### `stage-5/` — Skills 与能力打包
 
-- 会调 API
-- 会输出 JSON
-- 会定义工具
-- 会执行工具并把结果喂回模型
-- 会循环直到任务结束
+**目标**：把一类 agent 能力从「临时 prompt」升级成可复用、可测试、可分发的 skill。
 
-### Stage 2
+| 步骤 | 文件 | 内容 |
+| --- | --- | --- |
+| 1 | `step01_boundaries.py` | Skill vs Tool / Prompt / MCP 边界 |
+| 2 | `step02_load_skill.py` | 加载并校验 `SKILL.md` frontmatter |
+| 3 | `step03_validate_report.py` | 验收报告格式检查 |
+| 4 | `step04_run_smoke_cases.py` | smoke test 跑通 |
+| 公共模块 | `skill_common.py`, `report_check.py` | skill 加载与报告校验 |
+| 产出 | `my-skill/` | 完整 skill 示例（SKILL.md + 模板 + 脚本 + 测试） |
 
-继续做工具增强型 agent：
+```bash
+cd stage-5 && python step01_boundaries.py && python step04_run_smoke_cases.py
+```
 
-- 外部知识检索
-- 用户记忆
-- 长上下文管理
-- 带引用回答
+---
 
-### Stage 3
+### `stage-6/` — Browser Agent
 
-研究一个现代 harness：
+**目标**：让 agent 操作公开网页，并记录截图、DOM、动作日志，同时严守安全边界。
 
-- 目录结构
-- 工具注册
-- 权限门控
-- 会话存储
-- 状态压缩
-- trace / replay / safety
+| 步骤 | 文件 | 内容 |
+| --- | --- | --- |
+| 1 | `step01_validate_url.py` | URL 白名单 / 黑名单校验（无 Playwright 依赖） |
+| 2 | `step02_observe_page.py` | 页面观察与 DOM 摘要 |
+| 3 | `step03_run_agent.py` | 完整 browser agent 运行 |
+| 公共模块 | `browser_policy.py`, `browser_common.py` | URL 策略、ActionLogger、登录拦截 |
+| 产出 | `browser-agent/agent.py` | 公开网页 extractor |
+| 策略 | `browser-agent/policies.md` | 不登录、不越权、不绕过平台规则 |
+
+```bash
+cd stage-6 && pip install -r requirements.txt && playwright install chromium
+python step01_validate_url.py https://example.com
+python step03_run_agent.py https://example.com
+```
+
+---
+
+### `stage-7/` — Evaluation、Observability、Safety
+
+**目标**：把 agent 从 demo 推进到可评测、可追踪、可回归、可控风险。
+
+| 步骤 | 文件 | 内容 |
+| --- | --- | --- |
+| 1 | `step01_load_tasks.py` | 加载 eval 任务集 |
+| 2 | `step02_run_eval.py` | 运行 eval，写入 results + trace |
+| 3 | `step03_safety_gate.py` | 安全门禁演示 |
+| Eval | `evals/tasks.csv`（20 条） | input / must_have / must_not / risk_level |
+| Runner | `scripts/eval_runner.py` | 成功率、失败分类、trace JSONL |
+| 回归 | `scripts/compare_results.py` | baseline 对比 |
+| 安全 | `safety_gate.py`, `safety/policy.md` | block / approval_required / allow |
+| 专题 | `docs/claude-code-permissions.md` | CC 权限与 safety_gate 对照 |
+
+```bash
+cd stage-7
+python step01_load_tasks.py
+python step02_run_eval.py
+python step03_safety_gate.py
+```
+
+---
+
+### Stage 8 — 交付真实 Agent（仅 README 清单）
+
+**目标**：有明确用户、任务、成功标准，带日志/trace/权限/部署方式的完整项目。
+
+产出：别人能 clone 下来跑的 agent 项目（CLI / Web / Bot / GitHub Action 等）。
+
+---
+
+## 主学习路线（Stage 0 → 8）
+
+| Stage | 主题 | 本仓库材料 | 产出 |
+| --- | --- | --- | --- |
+| 0 | 理解 agent 是什么 | README 清单 | 一页笔记：为什么需要 agent |
+| 1 | 最小 agent loop | `stage-1/` 代码 | 50–150 行可运行 agent |
+| 2 | RAG + 记忆 | `stage-2/` 代码 | 带引用的资料研究助手 |
+| 3 | 现代 harness | `stage-3/claude-code-docs/` | harness demo + trace 解读 |
+| 4 | 多 agent 协调 | README 清单 | research → write → review 流水线 |
+| 5 | Skills 打包 | `stage-5/` 代码 | 可复用 SKILL.md + smoke test |
+| 6 | Browser agent | `stage-6/` 代码 | 公开网页 agent + action log |
+| 7 | Eval + 安全 | `stage-7/` 代码 | 20 条 eval + trace + 安全门禁 |
+| 8 | 交付真实 agent | README 清单 | 可 clone 运行的完整项目 |
+
+**推荐顺序（有代码阶段）**：
+
+```text
+Stage 1 → Stage 2 → Stage 3 导读 → Stage 5 → Stage 6 → Stage 7 → Stage 8
+                              ↘ Stage 4 可与 Stage 3 并行 ↗
+```
+
+Stage 3 与 Stage 7 建议对照阅读：先读 `06-权限系统.md`，再读 `stage-7/docs/claude-code-permissions.md`，最后跑 `step03_safety_gate.py`。
+
+---
 
 ## 项目阶梯
 
-仓库把实战目标拆成多个层级：
+仓库把实战目标拆成 11 个层级（详见 README Project Ladder）：
 
 1. Calculator Agent
 2. Web Research Agent
@@ -131,7 +236,22 @@ Claude Code v2.1.88 的源码分析仓库。
 10. Personal Agent
 11. Production Harness
 
-这个阶梯的意图很明确：先做小而稳的 agent，再逐步把工程能力、记忆、协议和安全边界补齐。
+意图：先做小而稳的 agent，再逐步补齐工程能力、记忆、协议和安全边界。
+
+---
+
+## Stage 与 Project Ladder 映射
+
+| Project Ladder | 对应 Stage |
+| --- | --- |
+| 1 Calculator Agent | Stage 1 |
+| 2 Web Research Agent | Stage 2 |
+| 5 Browser Agent | Stage 6 |
+| 8 Reusable Skill Pack | Stage 5 |
+| 9 Multi-Agent Writer | Stage 4 |
+| 11 Production Harness | Stage 7 + Stage 8 |
+
+---
 
 ## 资源选择原则
 
@@ -150,9 +270,9 @@ Claude Code v2.1.88 的源码分析仓库。
 - 无法验证的资料
 - 诱导绕过平台规则的内容
 
-## 核心判断标准
+---
 
-这个仓库反复强调的判断标准是：
+## 核心判断标准
 
 - 先做出能跑的最小 agent，再加功能
 - 先 trace，再扩展复杂度
@@ -161,20 +281,51 @@ Claude Code v2.1.88 的源码分析仓库。
 - 工具必须有严格 schema 和权限边界
 - 风险操作必须保留人工确认
 
-## 对 agent 的使用建议
+---
 
-如果你要把这个仓库当成 agent 学习资料，推荐顺序是：
+## 对 Agent / 维护者的使用建议
 
-1. 先读 `README.md`
-2. 再按 `stage-1/README.md` 跑最小 loop
-3. 再按 `stage-2/README.md` 加 RAG 和记忆
-4. 最后看 `stage-3/claude-code-source-code/README.md` 学 harness
+### 人类学习者
 
-如果你要修改仓库内容，优先遵守：
+1. 读 [README.md](README.md) 或打开 [index.html](index.html)
+2. 按 [stage-1/README.md](stage-1/README.md) 跑最小 loop
+3. 按 [stage-2/README.md](stage-2/README.md) 加 RAG 和记忆
+4. 读 [stage-3/claude-code-docs/README.md](stage-3/claude-code-docs/README.md) 学 harness
+5. 按 stage-5 → stage-6 → stage-7 顺序补 Skills、Browser、Eval
 
-- README-first
-- 高信号、低噪音
-- 资料可验证
-- 目标明确
-- 不把仓库改成链接垃圾场
+### AI Agent 修改本仓库时
 
+优先遵守：
+
+- **README-first**：主路线图变更同步更新 README 与 agent.md
+- **高信号、低噪音**：不堆无关链接
+- **资料可验证**：引用官方文档或可运行项目
+- **目标明确**：每个 stage 目录有清晰产出与运行命令
+- **最小 diff**：Stage 代码遵循递增 step 结构，公共逻辑抽到 `*_common.py`
+- **不把仓库改成链接垃圾场**
+
+修改 Stage 代码时的约定：
+
+| 约定 | 说明 |
+| --- | --- |
+| step 脚本 | `step01_*.py` … `stepNN_*.py`，每步可独立运行 |
+| 公共模块 | `common.py` / `skill_common.py` / `eval_common.py` 等 |
+| 环境 | 各 stage 自带 `requirements.txt` 和 `.env.example`（如需要） |
+| 文档 | 各 stage 的 README 与主 README 的检查项表格对齐 |
+| 测试 | smoke test 或 eval CSV，不追求全覆盖单元测试 |
+
+---
+
+## 关键文件速查
+
+| 需求 | 文件 |
+| --- | --- |
+| 学习路线图 | `README.md` |
+| 交互式浏览 | `index.html` |
+| 仓库结构说明 | `agent.md`（本文件） |
+| CC 权限源码导读 | `stage-3/claude-code-docs/06-权限系统.md` |
+| CC 权限与 Stage 7 对照 | `stage-7/docs/claude-code-permissions.md` |
+| Eval 任务定义 | `stage-7/evals/tasks.csv` |
+| 安全门禁实现 | `stage-7/safety_gate.py` |
+| Skill 示例 | `stage-5/my-skill/SKILL.md` |
+| Browser 安全策略 | `stage-6/browser-agent/policies.md` |
