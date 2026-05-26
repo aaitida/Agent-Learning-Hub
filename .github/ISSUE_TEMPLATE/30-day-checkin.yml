@@ -1,0 +1,44 @@
+name: 30-Day Agent Check-in
+description: Join the 30-day Agent engineering check-in challenge
+title: "[30-day check-in] Day "
+labels:
+  - check-in
+  - community
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fork 本仓库，按 Stage 1–8 学习，在本 Issue 记录每日进度。
+        参考：[stage-8/README.md](../../stage-8/README.md)
+  - type: input
+    id: day
+    attributes:
+      label: Day number (1-30)
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Stage worked on
+      options:
+        - stage-1
+        - stage-2
+        - stage-3
+        - stage-4
+        - stage-5
+        - stage-6
+        - stage-7
+        - stage-8
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What did you complete today?
+      description: 可附 commit / PR 链接
+    validations:
+      required: true
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Blockers or questions (optional)

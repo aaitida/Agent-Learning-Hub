@@ -1,0 +1,25 @@
+name: Good First Issue
+description: Small, well-scoped task for new contributors
+title: "[good first issue] "
+labels:
+  - good first issue
+  - help wanted
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢贡献！入门指南见 [CONTRIBUTING.md](../../CONTRIBUTING.md)。
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: 完成时应达到什么效果？
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: 涉及哪些文件或 stage（尽量小）
+    validations:
+      required: true
