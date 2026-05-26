@@ -217,9 +217,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Local talent-plan artifacts (repo root only)
-docs/talent-plan/screenshots/
-docs/talent-plan/weekly/
+# Maintainer-only docs (not published)
+/docs/talent-plan/
+/scripts/milestone_check.sh
 
 # Local learning progress (hub_progress.py)
 .hub-progress.json

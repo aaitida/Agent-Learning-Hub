@@ -18,12 +18,10 @@ A curated AI Agent learning roadmap for people who want to build useful, reliabl
 ```bash
 git clone https://github.com/kngwyc3/Agent-Learning-Hub.git
 cd Agent-Learning-Hub
-chmod +x scripts/check_github_setup.sh scripts/bootstrap.sh scripts/milestone_check.sh scripts/create_good_first_issues.sh
+chmod +x scripts/check_github_setup.sh scripts/bootstrap.sh scripts/create_good_first_issues.sh
 ./scripts/check_github_setup.sh
 python3 scripts/hub_progress.py status
 ```
-
-Daily rhythm: [docs/talent-plan/DAILY_ROUTINE.md](docs/talent-plan/DAILY_ROUTINE.md)
 
 **展示与入口**
 
@@ -47,8 +45,7 @@ Agent-Learning-Hub/
   stage-6/                # Browser agent（Playwright + 安全边界）
   stage-7/                # Eval / trace / 安全门禁
   stage-8/                # 可部署 CLI Agent（trace / 安全 / 成本上限）
-  scripts/                # bootstrap, progress CLI, skill scaffold, milestone check
-  docs/talent-plan/       # 贡献冲刺 / 社区传播 / 政策核实清单（维护者）
+  scripts/                # bootstrap, progress CLI, skill scaffold
 ```
 
 ## Agent 框架一张图
