@@ -18,7 +18,7 @@
 | 定义职责边界、输入输出 schema、停止条件 | `roles.py` + `step04_stop_conditions.py` |
 | 处理循环、争论、任务漂移、上下文膨胀 | `step04_stop_conditions.py` |
 | 判断什么时候单 agent 更好 | `step05_single_vs_multi.py` |
-| 理解 A2A 与共享状态的边界 | `06-a2a-vs-shared-state.md` |
+| 理解 A2A 与共享状态的边界 | `a2a-vs-shared-state.md` |
 | **产出**（小型多 agent 系统） | `agent.py` |
 
 ---
@@ -46,7 +46,7 @@ python agent.py
 
 延伸阅读：
 
-- [多 Agent 交互：A2A 还是共享状态？](06-a2a-vs-shared-state.md)
+- [多 Agent 交互：A2A 还是共享状态？](a2a-vs-shared-state.md)
 
 ---
 
@@ -198,7 +198,7 @@ python agent.py "写一段解释 supervisor 模式的短文"
 | `agents.py` | 角色执行器 |
 | `coordinator.py` | pipeline / supervisor / trace |
 | `step01` … `step05` | 递增教学脚本 |
-| `06-a2a-vs-shared-state.md` | A2A 与共享状态的工程边界 |
+| `a2a-vs-shared-state.md` | A2A 与共享状态的工程边界 |
 | `agent.py` | Stage 4 最终产出 |
 
 ---

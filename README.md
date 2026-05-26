@@ -42,6 +42,7 @@ Agent-Learning-Hub/
   stage-1/                # 最小 agent loop（Python，6 步）
   stage-2/                # RAG + 记忆（Python，7 步）
   stage-3/claude-code-docs/  # Claude Code 源码 12 章导读
+  stage-4/                # Multi-agent coordination（pipeline / supervisor）
   stage-5/                # Skills 能力打包（4 步 + smoke test）
   stage-6/                # Browser agent（Playwright + 安全边界）
   stage-7/                # Eval / trace / 安全门禁

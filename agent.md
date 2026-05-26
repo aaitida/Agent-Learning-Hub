@@ -25,7 +25,7 @@
 | 主路线图 | [README.md](README.md) | Stage 0–8 学习清单、Project Ladder、精选资源 |
 | 交互式学习页 | [index.html](index.html) | Stage 导航、资源卡片、进度勾选（本地 `python -m http.server` 访问） |
 | 仓库总览 | [agent.md](agent.md) | 本文件：结构说明、Stage 映射、维护原则 |
-| 分步教程 | [stage-1/](stage-1/) … [stage-7/](stage-7/) | 可运行代码与递增练习 |
+| 分步教程 | [stage-1/](stage-1/) … [stage-8/](stage-8/) | 可运行代码与递增练习 |
 
 ## 仓库结构
 
@@ -37,13 +37,13 @@ Agent-Learning-Hub/
   CONTRIBUTING.md           # 贡献指南
   stage-1/                  # 最小 agent loop（6 步 Python）
   stage-2/                  # RAG + 记忆（7 步 Python）
-  stage-3/claude-code-docs/ # Claude Code 源码 12 章导读
+  stage-3/                  # Claude Code harness 12 章导读
+  stage-4/                  # Multi-agent coordination（pipeline / supervisor）
   stage-5/                  # Skills 能力打包（4 步 + smoke test）
   stage-6/                  # Browser agent（Playwright + 安全边界）
   stage-7/                  # Eval / trace / 安全门禁
+  stage-8/                  # 可部署 CLI Agent（trace / 安全 / 成本上限）
 ```
-
-> **注意**：Stage 4（Multi-Agent）在主 README 有学习清单，本仓库暂无独立 `stage-4/` 代码目录；可参考 `feature/wyc` 分支或外部项目自行实践。
 
 ---
 
@@ -110,16 +110,24 @@ cd stage-2 && pip install -r requirements.txt && python step01_memory_layers.py
 
 ---
 
-### Stage 4 — Multi-Agent 协调（仅 README 清单）
+### `stage-4/` — Multi-Agent 协调
 
 **目标**：理解多 agent 是协调问题，不是魔法。
 
-- planner / executor / reviewer / critic / router 角色划分
-- supervisor 或 graph 管理，避免 agent 随意聊天
-- 职责边界、输入输出 schema、停止条件
-- 循环、争论、上下文膨胀的处理
+| 步骤 | 文件 | 内容 |
+| --- | --- | --- |
+| 1 | `step01_roles_contracts.py` | 角色职责、输入输出契约、停止条件 |
+| 2 | `step02_fixed_pipeline.py` | research → write → review → revise 固定流水线 |
+| 3 | `step03_supervisor_router.py` | supervisor 路由下一步 |
+| 4 | `step04_stop_conditions.py` | 防止循环、争论和任务漂移 |
+| 5 | `step05_single_vs_multi.py` | 判断什么时候单 agent 更好 |
+| 专题 | `a2a-vs-shared-state.md` | A2A 与共享状态的工程边界 |
+| 产出 | `agent.py` | 可调试的多 agent 写作系统 |
 
-推荐阅读：Claude Code Subagents、Hooks、Google ADK、A2A、ACP（见主 README Stage 4 章节）。
+```bash
+cd stage-4 && pip install -r requirements.txt
+python agent.py "写一段解释 supervisor 模式的短文"
+```
 
 ---
 
@@ -187,11 +195,23 @@ python step03_safety_gate.py
 
 ---
 
-### Stage 8 — 交付真实 Agent（仅 README 清单）
+### `stage-8/` — 交付真实 Agent
 
 **目标**：有明确用户、任务、成功标准，带日志/trace/权限/部署方式的完整项目。
 
-产出：别人能 clone 下来跑的 agent 项目（CLI / Web / Bot / GitHub Action 等）。
+| 模块 | 文件 | 内容 |
+| --- | --- | --- |
+| 配置 | `.env.example`, `common.py` | settings、trace、成本上限 |
+| 工具 | `tools.py` | calculator + repo-scoped read_file |
+| 安全 | `safety.py` | block / approval_required / allow |
+| Agent | `agent.py` | tool loop、重试、超时、max steps |
+| CLI | `cli.py` | 可运行入口 |
+| Smoke | `step01_smoke.py` | 离线 smoke test |
+
+```bash
+cd stage-8 && pip install -r requirements.txt
+python step01_smoke.py
+```
 
 ---
 
@@ -203,11 +223,11 @@ python step03_safety_gate.py
 | 1 | 最小 agent loop | `stage-1/` 代码 | 50–150 行可运行 agent |
 | 2 | RAG + 记忆 | `stage-2/` 代码 | 带引用的资料研究助手 |
 | 3 | 现代 harness | `stage-3/claude-code-docs/` | harness demo + trace 解读 |
-| 4 | 多 agent 协调 | README 清单 | research → write → review 流水线 |
+| 4 | 多 agent 协调 | `stage-4/` 代码 | research → write → review 流水线 |
 | 5 | Skills 打包 | `stage-5/` 代码 | 可复用 SKILL.md + smoke test |
 | 6 | Browser agent | `stage-6/` 代码 | 公开网页 agent + action log |
 | 7 | Eval + 安全 | `stage-7/` 代码 | 20 条 eval + trace + 安全门禁 |
-| 8 | 交付真实 agent | README 清单 | 可 clone 运行的完整项目 |
+| 8 | 交付真实 agent | `stage-8/` 代码 | 可 clone 运行的 CLI agent |
 
 **推荐顺序（有代码阶段）**：
 

@@ -70,10 +70,10 @@
 
 ## 配套资源
 
-- **交互式学习面板**：`../claude-code-学习指南.html`（在浏览器打开）
-- **架构图**：`../Claude Code — Agent Runtime 架构.html`
-- **源码**：`../claude-code-source-code/src/`
-- **深度分析报告**：`../claude-code-source-code/docs/zh/`
+- **交互式学习面板**：`./claude-code-学习指南.html`（在浏览器打开）
+- **架构图**：`./Claude Code — Agent Runtime 架构.html`
+- **源码**：不随本仓库分发；如需对照源码，请按 [stage-3/README.md](../README.md) 的说明自行获取公开版本或官方文档。
+- **深度分析报告**：本目录第 00–11 章即为学习笔记主体。
 
 ---
 
