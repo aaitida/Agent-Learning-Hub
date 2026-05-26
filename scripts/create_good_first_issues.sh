@@ -26,33 +26,49 @@ create_issue() {
   fi
 }
 
-create_issue "[good first issue] Add bootstrap.sh to README quick start" \
-"Goal: README 快速开始区块链接 scripts/bootstrap.sh 并说明 smoke test 步骤。
+create_issue "[新手任务] 在 README 快速开始补充 bootstrap 说明" \
+"目标：README 快速开始区块链接 scripts/bootstrap.sh 并说明 smoke test 步骤。
 
-Scope: README.md only.
+范围：README.md
 
-Acceptance:
+验收标准：
 - Quick start 含 ./scripts/bootstrap.sh
 - 说明 check_github_setup.sh 用途"
 
-create_issue "[good first issue] Translate stage-1 README key sections to English" \
-"Goal: stage-1/README.md 增加 English summary 段落（不改代码）。
+create_issue "[新手任务] 为 stage-1 README 添加英文摘要" \
+"目标：stage-1/README.md 增加 English summary 段落（不改代码）。
 
-Scope: stage-1/README.md"
+范围：stage-1/README.md
 
-create_issue "[good first issue] Add one eval task for skill validation" \
-"Goal: stage-7/evals/tasks.csv 新增 1 条 skill 相关 eval 任务。
+验收标准：
+- 至少 1 段 English overview
+- 保留现有中文内容"
 
-Scope: evals/tasks.csv + 必要时 TEACHING_RESPONSES"
+create_issue "[新手任务] 新增 1 条 skill 相关 eval 任务" \
+"目标：stage-7/evals/tasks.csv 新增 1 条 skill 相关 eval 任务。
 
-create_issue "[good first issue] Fix broken or outdated resource links in README" \
-"Goal: 扫描 README Curated Resources，修复失效链接或标注 archived。
+范围：evals/tasks.csv + 必要时 TEACHING_RESPONSES
 
-Scope: README.md"
+验收标准：
+- 新增 1 行有效 eval 任务
+- 相关 smoke / eval 可跑通"
 
-create_issue "[good first issue] Improve index.html mobile layout" \
-"Goal: index.html 在窄屏下 stage 导航不溢出。
+create_issue "[新手任务] 修复 README 失效资源链接" \
+"目标：扫描 README Curated Resources，修复失效链接或标注 archived。
 
-Scope: index.html CSS only"
+范围：README.md
+
+验收标准：
+- 检查并修复/标注所有失效外链
+- PR 描述列出改动链接清单"
+
+create_issue "[新手任务] 优化 index.html 移动端布局" \
+"目标：index.html 在窄屏下 stage 导航不溢出。
+
+范围：index.html CSS only
+
+验收标准：
+- 375px 宽度下布局正常
+- 不破坏桌面端现有样式"
 
 echo "Done. Labels may need to exist — create 'good first issue' and 'help wanted' in repo settings if missing."

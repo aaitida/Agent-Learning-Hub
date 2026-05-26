@@ -1,8 +1,6 @@
-# Good First Issues
+# 新手任务（Good First Issues）
 
 适合第一次贡献的小任务。认领方式：在 Issue 下评论「我来」→ fork → PR。
-
-> **维护者**：请先在 GitHub **Settings → General → Features** 中开启 **Issues**，再创建带 `good first issue` 标签的任务。
 
 当前开放列表：<https://github.com/kngwyc3/Agent-Learning-Hub/issues?q=is%3Aopen+label%3A%22good+first+issue%22>
 
