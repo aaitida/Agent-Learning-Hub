@@ -50,6 +50,53 @@ Agent-Learning-Hub/
   docs/talent-plan/       # 贡献冲刺 / 社区传播 / 政策核实清单（维护者）
 ```
 
+## Agent 框架一张图
+
+Agent 不只是一段「调模型 + 调工具」的脚本。工程化后，通常会拆成几层——本仓库 Stage 1–8 也是按这个顺序递进：
+
+```mermaid
+flowchart TB
+  subgraph L1["① 应用"]
+    APP["单 Agent 任务 / 多 Agent 编排 / 人机协同"]
+  end
+
+  subgraph L2["② 运行时"]
+    SVC["会话 · 任务 · 权限"]
+    ENG["推理循环 · 工具调用 · 重试降级"]
+    EVT["事件流 · 人工介入"]
+    WS["沙箱 / 本地 / 容器执行环境"]
+  end
+
+  subgraph L3["③ 模型与协议"]
+    MDL["LLM · 语音 · 多模型路由"]
+    PRT["Tool / MCP · A2A · 宿主 UI 协议"]
+  end
+
+  subgraph L4["④ 数据"]
+    MEM["短期上下文 · 长期记忆 · RAG 检索"]
+    STO["DB · 向量库 · 对象存储"]
+  end
+
+  subgraph L5["⑤ 工程底座"]
+    OBS["Trace · Eval · 日志 · 成本监控"]
+    DEP["网关 · 消息 · 配置 · 部署"]
+  end
+
+  L1 --> L2 --> L3
+  L2 --> L4
+  L2 --> L5
+```
+
+| 层 | 核心问题 | 本仓库入口 |
+| --- | --- | --- |
+| 应用 | 解决什么任务、几个 Agent 协作 | [stage-6/](stage-6/) Browser · [stage-8/](stage-8/) CLI Agent |
+| 运行时 | 怎么循环推理、在哪执行、谁有权做什么 | [stage-1/](stage-1/) loop · [stage-3/](stage-3/) harness 导读 |
+| 模型与协议 | 接哪家模型、工具怎么标准化 | Stage 1 工具调用 · [stage-5/](stage-5/) Skills / MCP |
+| 数据 | 上下文怎么控、知识从哪来 | [stage-2/](stage-2/) RAG + 记忆 |
+| 工程底座 | 能不能上线、出了问题怎么查 | [stage-7/](stage-7/) Eval · trace · 安全门禁 |
+
+先跑通 **② 运行时**（Stage 1），再补 **④ 数据** 和 **⑤ 工程底座**；不要跳步直接堆多 Agent 模板。
+
 ## Maintainer
 
 Originally curated by [陈思州](https://github.com/jjyaoao) (Datawhale 成员) <a href="https://www.xiaohongshu.com/user/profile/67b9cc34000000000e013517" target="_blank"><img alt="Static Badge" src="https://img.shields.io/badge/Rednote-小红书-e93c49"></a>
