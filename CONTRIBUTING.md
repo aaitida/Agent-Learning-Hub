@@ -7,12 +7,12 @@ This repository is README-first. The best contribution is a small, high-signal c
 ## 5-Minute First PR
 
 1. Fork [kngwyc3/Agent-Learning-Hub](https://github.com/kngwyc3/Agent-Learning-Hub) and clone your fork.
-2. Pick a [`good first issue`](https://github.com/kngwyc3/Agent-Learning-Hub/issues?q=is%3Aissue+label%3A%22good+first+issue%22) or see [docs/talent-plan/GOOD_FIRST_ISSUES.md](docs/talent-plan/GOOD_FIRST_ISSUES.md).
+2. Pick a [`good first issue`](https://github.com/kngwyc3/Agent-Learning-Hub/issues?q=is%3Aopen+label%3A%22good+first+issue%22) or see [.github/GOOD_FIRST_ISSUES.md](.github/GOOD_FIRST_ISSUES.md).
 3. Create a branch: `git checkout -b fix/short-description`
 4. Run smoke tests for your stage:
    ```bash
-   ./scripts/bootstrap.sh          # full smoke (optional)
    cd stage-5 && python step04_run_smoke_cases.py
+   cd stage-8 && python step01_smoke.py
    ```
 5. Commit with a clear message and open a PR against `main`.
 6. Fill in the PR template; link the issue with `Fixes #123` when applicable.
