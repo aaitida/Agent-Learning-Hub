@@ -52,13 +52,5 @@ if command -v gh >/dev/null 2>&1; then
     warn "gh installed but not authenticated — run: gh auth login"
   fi
 else
-  warn "gh not installed — install for milestone stats: brew install gh"
+  warn "gh not installed — optional for repo stats: brew install gh"
 fi
-
-echo
-echo "--- Daily rhythm reminder ---"
-echo "  Weekdays: 1 commit to main on Agent-Learning-Hub"
-echo "  Wed/Fri:  1 external PR or issue on an active OSS repo"
-echo "  Tracker:  docs/talent-plan/CONTRIBUTION_SPRINT.md"
-echo
-echo "See docs/talent-plan/POLICY_VERIFICATION.md for Shenzhen talent policy checklist."
