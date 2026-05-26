@@ -11,7 +11,7 @@ A curated AI Agent learning roadmap for people who want to build useful, reliabl
 3. **Cursor Skill 脚手架** — `python3 scripts/scaffold_skill.py --name my-skill --description "..."` 生成可安装 skill
 4. **Eval 基准包** — stage-7 输出 CSV + [HTML 报告](stage-7/evals/report.html)（运行 eval 后生成）
 
-欢迎参与 [30 天 Agent 打卡](.github/30_DAY_CHECKIN.md) 和 [good first issues](.github/GOOD_FIRST_ISSUES.md)。
+欢迎参与 [30 天 Agent 打卡](.github/30_DAY_CHECKIN.md) 和 [新手任务](.github/GOOD_FIRST_ISSUES.md)。
 
 ## Quick Start
 
