@@ -175,6 +175,9 @@ table{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden
 .author-focus{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .author-chip{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);font-size:0.82em;font-weight:600}
 .author-note{margin-top:14px;color:var(--text-secondary);font-size:0.88em;line-height:1.65}
+.author-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.author-links a{color:var(--accent);font-size:0.86em;font-weight:700;text-decoration:none}
+.author-links a:hover{text-decoration:underline}
 
 /* ===== Priority Table ===== */
 .priority-grid{display:grid;grid-template-columns:auto 1fr auto;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;box-shadow:var(--shadow)}
@@ -930,6 +933,12 @@ function renderAuthorFooter(q) {
         <div class="author-summary">${highlightText(authorData.summary, q)}</div>
         <div class="author-focus">${focusHtml}</div>
         <div class="author-note">${highlightText(authorData.note, q)}</div>
+        <div class="author-links">
+          <a href="README.md">README</a>
+          <a href="CONTRIBUTING.md">CONTRIBUTING</a>
+          <a href="https://github.com/kngwyc3/Agent-Learning-Hub/issues" target="_blank">Issues</a>
+          <a href=".github/30_DAY_CHECKIN.md">30-day check-in</a>
+        </div>
       </div>
     </div>
   </footer>`;
