@@ -45,6 +45,7 @@ Agent-Learning-Hub/
   stage-6/                # Browser agent（Playwright + 安全边界）
   stage-7/                # Eval / trace / 安全门禁
   stage-8/                # 可部署 CLI Agent（trace / 安全 / 成本上限）
+  docs/learn/             # 专题阅读笔记（A2A、架构对照等）
   scripts/                # bootstrap, progress CLI, skill scaffold
 ```
 

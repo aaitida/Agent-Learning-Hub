@@ -121,7 +121,7 @@ cd stage-2 && pip install -r requirements.txt && python step01_memory_layers.py
 | 3 | `step03_supervisor_router.py` | supervisor 路由下一步 |
 | 4 | `step04_stop_conditions.py` | 防止循环、争论和任务漂移 |
 | 5 | `step05_single_vs_multi.py` | 判断什么时候单 agent 更好 |
-| 专题 | `a2a-vs-shared-state.md` | A2A 与共享状态的工程边界 |
+| 专题 | [docs/learn/a2a-vs-shared-state.md](docs/learn/a2a-vs-shared-state.md) | A2A 与共享状态的工程边界 |
 | 产出 | `agent.py` | 可调试的多 agent 写作系统 |
 
 ```bash
