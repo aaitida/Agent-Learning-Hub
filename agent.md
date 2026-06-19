@@ -324,6 +324,14 @@ Stage 3 与 Stage 7 建议对照阅读：先读 `06-权限系统.md`，再读 `s
 - **最小 diff**：Stage 代码遵循递增 step 结构，公共逻辑抽到 `*_common.py`
 - **不把仓库改成链接垃圾场**
 
+### 学习者使用 AI 导师
+
+本仓库 [skills/teach/SKILL.md](skills/teach/SKILL.md) 提供了一个 `teach` skill。当学习者希望 AI 协助学习时，可以告知 AI Agent 加载此 skill：
+
+- AI Agent 会以"教学空间"方式工作，创建 MISSION.md、课程、参考材料和练习。
+- 学习者只需告诉 Agent "请加载 skills/teach/SKILL.md 来教我学习 Agent 开发"，Agent 就能按"知识-技能-智慧"递进方式引导学习。
+- 推荐配合 README 中的 Learning Todo List 使用。
+
 修改 Stage 代码时的约定：
 
 | 约定 | 说明 |
@@ -348,4 +356,5 @@ Stage 3 与 Stage 7 建议对照阅读：先读 `06-权限系统.md`，再读 `s
 | Eval 任务定义 | `stage-7/evals/tasks.csv` |
 | 安全门禁实现 | `stage-7/safety_gate.py` |
 | Skill 示例 | `stage-5/my-skill/SKILL.md` |
+| Teach Skill（AI 导师） | `skills/teach/SKILL.md` |
 | Browser 安全策略 | `stage-6/browser-agent/policies.md` |
