@@ -35,6 +35,7 @@ python step04_run_smoke_cases.py
 - migration-helper：迁移 API / 配置 / 数据结构
 - pdf-extraction：抽取 PDF 表格、图片、引用
 - release-note-writer：从 commit / PR 生成发布说明
+- **teach**（[skills/teach/](../skills/teach/)）：让 AI 充当私人导师，按"知识-技能-智慧"方式引导学习——当你自己学习这个仓库时，可以直接用这个 skill
 
 建议目录：
 
@@ -208,6 +209,7 @@ python step04_run_smoke_cases.py
 | `my-skill/samples/bad_report.md` | 故意失败的反例 |
 | `my-skill/scripts/smoke_check.py` | CLI 版 report 校验 |
 | `my-skill/tests/smoke.md` | smoke case 说明 |
+| `../skills/teach/SKILL.md` | teach skill 参考——本仓库自带的 AI 导师 skill，学习时可直接使用 |
 
 ---
 

@@ -116,6 +116,14 @@ Originally curated by [陈思州](https://github.com/jjyaoao) (Datawhale 成员)
 - 如果你想做项目：直接看「Project Ladder」，每一档做一个可运行作品。
 - 如果你只想找资料：看「Curated Resources」，优先读官方文档和经典论文。
 
+### 使用 AI 协助学习
+
+本仓库提供了一个 `teach` skill（位于 [skills/teach/](skills/teach/)），你可以将其加载到你的 AI Agent（如 Claude Code、Cursor、CodeBuddy 等）中，让 AI 充当你的私人导师：
+
+- **告知 Agent 加载 `skills/teach/SKILL.md`**，它就能按照最佳教学方法，针对你的知识背景和兴趣，提供结构化的课程、交互式练习和即时反馈。
+- 使用方式：告诉你的 AI Agent "请加载 skills/teach/SKILL.md 来教我学习本仓库的内容"，Agent 会以知识-技能-智慧的递进方式引导你学习 Agent 开发的每一个阶段。
+- 使用前，你也可以先创建一个 `MISSION.md` 记录学习目标，帮助 Agent 更精准地定制内容。
+
 **推荐学习路径（有代码的阶段）**
 
 ```bash
