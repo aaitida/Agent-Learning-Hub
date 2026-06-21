@@ -230,5 +230,6 @@ python step04_run_smoke_cases.py
 
 1. 回到根目录 [README.md](../README.md)，勾选 Stage 5 八项。  
 2. 进入 [Stage 6](../stage-6/)：把浏览器或桌面操作接成可观察、可恢复、可审计的 agent 行为。
+3. 如果你对 skill 的结构还有疑问，可以参见 [skills/teach/SKILL.md](../skills/teach/SKILL.md)——它是本仓库自带的完整 skill 示例，同时也是一个实用工具，供你学习仓库内容时直接使用。
 
 有问题时，优先检查 **When To Use** 是否太泛，以及 smoke test 是否真的覆盖了失败场景。
