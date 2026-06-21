@@ -26,6 +26,7 @@ This repository is README-first. The best contribution is a small, high-signal c
 - Add a small project idea with a clear learning goal.
 - Fix outdated links.
 - Remove low-quality or duplicated resources.
+- Add a reusable skill to [skills/](skills/) with `SKILL.md` + at least one format template or script (refer to Stage 5 for skill design principles).
 
 ## Please Avoid
 

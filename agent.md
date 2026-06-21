@@ -43,6 +43,7 @@ Agent-Learning-Hub/
   stage-6/                  # Browser agent（Playwright + 安全边界）
   stage-7/                  # Eval / trace / 安全门禁
   stage-8/                  # 可部署 CLI Agent（trace / 安全 / 成本上限）
+  skills/teach/             # AI 导师 skill（本仓库自带，学习时直接使用）
 ```
 
 ---
