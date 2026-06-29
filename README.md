@@ -245,6 +245,10 @@ Agent 领域变化很快。当前更值得投入的不是老式“角色扮演�
 
 产出：一个可调试的 agent harness demo，包含 README、运行步骤、示例输入输出和失败记录。
 
+**Claude Code 架构流程图**：
+
+![Claude Code 流程图](stage-3/cc流程图.jpg)
+
 **Claude Code 源码导读**：[stage-3/claude-code-docs/](stage-3/claude-code-docs/)（12 章：Tool 系统、Query 引擎、权限、MCP、状态管理、CLI 入口等）
 
 | 章节 | 重点 |
