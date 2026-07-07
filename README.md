@@ -419,6 +419,20 @@ python cli.py "读取 stage-1/notes.txt 并总结"
 | Trace 日志 | `stage-8/traces/*.jsonl`（运行后生成） |
 | Smoke test | `stage-8/step01_smoke.py` |
 
+### Stage 9: Context Compaction And Memory
+
+Agent 跑得越久，上下文就是瓶颈。上下文太少会忘事，太多会撑爆 token 上限、变贵、质量下降。这个阶段专攻「让 agent 记住什么、怎么压缩对话」。
+
+- [ ] 理解 context window 与 token 成本的关系：为什么长会话必须压缩。
+- [ ] 区分短期上下文（当前会话）、会话记忆（本轮任务）、长期记忆（跨任务持久化）。
+- [ ] 理解 compaction 的两种触发：主动（每轮常规压缩）与被动（413 上限时紧急压缩，对照 cc流程图 里的 Reactive Compact 节点）。
+- [ ] 会做滑动窗口 / 摘要式压缩：保留最近 N 轮 + 关键信息摘要。
+- [ ] 会给压缩加「不可丢弃」锚点：系统约束、用户明确要求、工具 schema。
+- [ ] 会评估压缩质量：压缩后任务成功率是否下降、关键信息是否丢失。
+- [ ] 把「裸 agent loop」加上 compaction + memory，对比加之前的长任务表现。
+
+产出：一个能跑 50+ 轮不丢关键信息的 agent，带 memory 读写与压缩日志。
+
 ## Project Ladder
 
 | Level | Project | What You Learn |
