@@ -29,7 +29,7 @@ python3 scripts/hub_progress.py status
 | --- | --- |
 | [README.md](README.md) | 主路线图、资源索引、学习原则（本文件） |
 | [index.html](index.html) | 交互式学习页：Stage 导航、资源卡片、进度勾选 |
-| [stage-1/](stage-1/) … [stage-8/](stage-8/) | 分阶段可运行代码与分步教程 |
+| [stage-1/](stage-1/) … [stage-9/](stage-9/) | 分阶段可运行代码与分步教程 |
 
 **仓库结构**
 
@@ -45,6 +45,7 @@ Agent-Learning-Hub/
   stage-6/                # Browser agent（Playwright + 安全边界）
   stage-7/                # Eval / trace / 安全门禁
   stage-8/                # 可部署 CLI Agent（trace / 安全 / 成本上限）
+  stage-9/                # 上下文压缩与记忆（compaction + memory 最小实现）
   skills/teach/           # AI 导师 skill（本仓库自带，学习时直接使用）
   docs/learn/             # 专题阅读笔记（A2A、架构对照等）
   scripts/                # bootstrap, progress CLI, skill scaffold
