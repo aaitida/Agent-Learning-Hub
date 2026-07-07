@@ -433,6 +433,14 @@ Agent 跑得越久，上下文就是瓶颈。上下文太少会忘事，太多�
 
 产出：一个能跑 50+ 轮不丢关键信息的 agent，带 memory 读写与压缩日志。
 
+推荐阅读：
+
+- [Anthropic: 有效的上下文工程](https://www.anthropic.com/engineering/effective-context-engineering) — 上下文工程的核心原则：该放什么、该丢掉什么。
+- [Claude Code 官方文档（context / memory 机制）](https://code.claude.com/docs/en/overview) — 了解 Claude Code 的上下文管理与记忆设计。
+- [Letta 文档](https://docs.letta.com/) — stateful agent 的 memory / context 管理平台。
+- [mem0 文档](https://docs.mem0.ai/) — 记忆层组件，自动抽取与检索长期记忆。
+- [Reflexion](https://arxiv.org/abs/2303.11366) — 通过语言反馈做自我改进与记忆。
+
 ## Project Ladder
 
 | Level | Project | What You Learn |
