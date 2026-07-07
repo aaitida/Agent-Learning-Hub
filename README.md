@@ -441,6 +441,17 @@ Agent 跑得越久，上下文就是瓶颈。上下文太少会忘事，太多�
 - [mem0 文档](https://docs.mem0.ai/) — 记忆层组件，自动抽取与检索长期记忆。
 - [Reflexion](https://arxiv.org/abs/2303.11366) — 通过语言反馈做自我改进与记忆。
 
+开源项目参考：
+
+| Project | Why It Fits Stage 9 |
+| --- | --- |
+| [mem0](https://github.com/mem0ai/mem0) | 记忆层组件，适合学长期 memory 的抽取、去重与检索。 |
+| [Letta](https://github.com/letta-ai/letta) | 面向 stateful agents 的 memory / context 管理平台。 |
+| [claw0](https://github.com/shareAI-lab/claw0) | 从 agent loop 一路构建 memory、heartbeat 与 context compaction。 |
+| [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) | 从零复刻 Claude Code 的 compaction 与 context 管理机制。 |
+
+对照 [Claude Code 架构流程图](stage-3/cc流程图.jpg) 中的 Context Compact / Reactive Compact 节点，可以理解压缩在真实 harness 里的触发时机。
+
 ## Project Ladder
 
 | Level | Project | What You Learn |
