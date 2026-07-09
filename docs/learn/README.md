@@ -15,6 +15,12 @@
 | [多 Agent 交互：A2A 还是共享状态？](./a2a-vs-shared-state.md) | Stage 4 | 同系统内部协作主流是 coordinator + shared state，A2A 更适合跨系统 |
 | [多 Agent 术语速查](./glossary.md) | Stage 4 / 5 | A2A、MCP、Shared State、Coordinator、Trace 等核心概念的最短定义 |
 | [多 Agent 常见问题与自测](./multi-agent-faq.md) | Stage 4 | 常见误区、排错清单与自测题 |
+| [最小 Agent Loop：为什么 50 行就够了](./stage-1-minimal-loop.md) | Stage 1 | loop 才是 agent 本质，框架帮的是工程化不是 loop 本身 |
+| [RAG、记忆与上下文：三层不要混](./stage-2-rag-memory.md) | Stage 2 | 短期上下文 / 会话记忆 / 长期记忆是三种东西，RAG 不属记忆 |
+| [Skill 是什么，不是什么](./stage-5-skills.md) | Stage 5 | Skill 是可复用能力包，不是一次性 prompt 也不是工具 |
+| [为什么 Eval 先于更多 Agent](./stage-7-eval.md) | Stage 7 | 没有 eval 只能算 demo，先有测试集再加复杂度 |
+| [从 Demo 到可部署 Agent](./stage-8-deploy.md) | Stage 8 | demo 跑通只是开始，交付要日志 / trace / 权限 / 部署 |
+| [上下文压缩与记忆：长会话为什么不爆窗](./stage-9-compaction-memory.md) | Stage 9 | 压缩控窗口、记忆留事实，锚点保护关键信息 |
 
 > 索引会随笔记增加而更新。新增一篇笔记时，记得在上表补一行。
 
