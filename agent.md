@@ -22,10 +22,10 @@
 
 | 入口 | 路径 | 用途 |
 | --- | --- | --- |
-| 主路线图 | [README.md](README.md) | Stage 0–8 学习清单、Project Ladder、精选资源 |
+| 主路线图 | [README.md](README.md) | Stage 0–9 学习清单、Project Ladder、精选资源 |
 | 交互式学习页 | [index.html](index.html) | Stage 导航、资源卡片、进度勾选（本地 `python -m http.server` 访问） |
 | 仓库总览 | [agent.md](agent.md) | 本文件：结构说明、Stage 映射、维护原则 |
-| 分步教程 | [stage-1/](stage-1/) … [stage-8/](stage-8/) | 可运行代码与递增练习 |
+| 分步教程 | [stage-1/](stage-1/) … [stage-9/](stage-9/) | 可运行代码与递增练习 |
 
 ## 仓库结构
 
@@ -43,6 +43,7 @@ Agent-Learning-Hub/
   stage-6/                  # Browser agent（Playwright + 安全边界）
   stage-7/                  # Eval / trace / 安全门禁
   stage-8/                  # 可部署 CLI Agent（trace / 安全 / 成本上限）
+  stage-9/                  # 上下文压缩与记忆（compaction + memory 最小实现）
   skills/teach/             # AI 导师 skill（本仓库自带，学习时直接使用）
 ```
 
@@ -216,7 +217,31 @@ python step01_smoke.py
 
 ---
 
-## 主学习路线（Stage 0 → 8）
+### `stage-9/` — 上下文压缩与记忆
+
+**目标**：从零实现上下文压缩（compaction）与长期记忆（memory）的最小版本，理解「长会话为什么不爆窗、用户事实怎么跨任务保留」。与 Stage 2 用 mem0 / Letta 的「用现成库」形成递进：本阶段自己写压缩与记忆，把机制看清。
+
+| 步骤 | 文件 | 内容 |
+| --- | --- | --- |
+| 1 | `step01_window_basics.py` | 认识上下文窗口与 token 成本 |
+| 2 | `step02_sliding_window.py` | 滑动窗口压缩（保锚点 + 最近消息） |
+| 3 | `step03_summarize_compact.py` | 摘要式压缩（旧对话压成一条） |
+| 4 | `step04_memory_read_write.py` | 长期记忆写入与召回 |
+| 5 | `step05_loop_with_memory.py` | compaction + memory 接进 60 轮 loop |
+| 公共模块 | `compactor.py`, `memory_store.py` | 压缩与记忆核心实现 |
+| 产出 | 带 compaction + memory 的长任务 agent | 可见 token 节省 |
+
+```bash
+cd stage-9 && pip install -r requirements.txt
+python step01_window_basics.py
+python step05_loop_with_memory.py
+```
+
+**与 cc流程图 的衔接**：[stage-3/cc流程图.jpg](stage-3/cc流程图.jpg) 的 Context Compact / Reactive Compact 节点，正是 `compactor.py` 里「主动每轮压缩 / 被动 413 紧急压缩」两种模式的工程来源；其中的「锚点（anchor）」机制保证系统约束、用户要求、工具 schema 不被压丢。
+
+---
+
+## 主学习路线（Stage 0 → 9）
 
 | Stage | 主题 | 本仓库材料 | 产出 |
 | --- | --- | --- | --- |
@@ -229,12 +254,14 @@ python step01_smoke.py
 | 6 | Browser agent | `stage-6/` 代码 | 公开网页 agent + action log |
 | 7 | Eval + 安全 | `stage-7/` 代码 | 20 条 eval + trace + 安全门禁 |
 | 8 | 交付真实 agent | `stage-8/` 代码 | 可 clone 运行的 CLI agent |
+| 9 | 上下文压缩与记忆 | `stage-9/` 代码 | 带 compaction + memory 的 60 轮长任务 loop |
 
 **推荐顺序（有代码阶段）**：
 
 ```text
 Stage 1 → Stage 2 → Stage 3 导读 → Stage 5 → Stage 6 → Stage 7 → Stage 8
                               ↘ Stage 4 可与 Stage 3 并行 ↗
+Stage 9（上下文压缩与记忆）可在 Stage 2 之后任意阶段深入
 ```
 
 Stage 3 与 Stage 7 建议对照阅读：先读 `06-权限系统.md`，再读 `stage-7/docs/claude-code-permissions.md`，最后跑 `step03_safety_gate.py`。
@@ -271,6 +298,7 @@ Stage 3 与 Stage 7 建议对照阅读：先读 `06-权限系统.md`，再读 `s
 | 8 Reusable Skill Pack | Stage 5 |
 | 9 Multi-Agent Writer | Stage 4 |
 | 11 Production Harness | Stage 7 + Stage 8 |
+| 10/11 Personal / Production Agent | Stage 9（长运行记忆与上下文压缩） |
 
 ---
 
@@ -359,3 +387,4 @@ Stage 3 与 Stage 7 建议对照阅读：先读 `06-权限系统.md`，再读 `s
 | Skill 示例 | `stage-5/my-skill/SKILL.md` |
 | Teach Skill（AI 导师） | `skills/teach/SKILL.md` |
 | Browser 安全策略 | `stage-6/browser-agent/policies.md` |
+| 上下文压缩与记忆示例 | `stage-9/` |
