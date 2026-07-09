@@ -493,6 +493,32 @@ const learningData = {
       reading: '',
       projects: '',
       output: '一个别人能 clone 下来跑的 agent 项目。'
+    },
+    {
+      id:'stage9', title:'Stage 9: 上下文压缩与记忆（Context Compaction And Memory）',
+      items:[
+        '理解 context window 与 token 成本的关系：为什么长会话必须压缩。',
+        '区分短期上下文（当前会话）、会话记忆（本轮任务）、长期记忆（跨任务持久化）。',
+        '理解 compaction 的两种触发：主动（每轮常规压缩）与被动（413 上限时紧急压缩，对照 cc流程图 里的 Reactive Compact 节点）。',
+        '会做滑动窗口 / 摘要式压缩：保留最近 N 轮 + 关键信息摘要。',
+        '会给压缩加「不可丢弃」锚点：系统约束、用户明确要求、工具 schema。',
+        '会评估压缩质量：压缩后任务成功率是否下降、关键信息是否丢失。',
+        '把「裸 agent loop」加上 compaction + memory，对比加之前的长任务表现。'
+      ],
+      reading: `<table><thead><tr><th>Resource</th></tr></thead><tbody>
+        <tr><td><a href="https://www.anthropic.com/engineering/effective-context-engineering" target="_blank">Anthropic: 有效的上下文工程</a></td></tr>
+        <tr><td><a href="https://code.claude.com/docs/en/overview" target="_blank">Claude Code 官方文档（context / memory 机制）</a></td></tr>
+        <tr><td><a href="https://docs.letta.com/" target="_blank">Letta 文档</a></td></tr>
+        <tr><td><a href="https://docs.mem0.ai/" target="_blank">mem0 文档</a></td></tr>
+        <tr><td><a href="https://arxiv.org/abs/2303.11366" target="_blank">Reflexion</a></td></tr>
+      </tbody></table>`,
+      projects: '<table><thead><tr><th>Project</th><th>Why It Fits Stage 9</th></tr></thead><tbody>' + [
+        ['<a href="https://github.com/mem0ai/mem0" target="_blank">mem0</a>','记忆层组件，适合学长期 memory 的抽取、去重与检索。'],
+        ['<a href="https://github.com/letta-ai/letta" target="_blank">Letta</a>','面向 stateful agents 的 memory / context 管理平台。'],
+        ['<a href="https://github.com/shareAI-lab/claw0" target="_blank">claw0</a>','从 agent loop 一路构建 memory、heartbeat 与 context compaction。'],
+        ['<a href="https://github.com/shareAI-lab/learn-claude-code" target="_blank">learn-claude-code</a>','从零复刻 Claude Code 的 compaction 与 context 管理机制。']
+      ].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')+'</tbody></table>',
+      output: '一个能跑 50+ 轮不丢关键信息的 agent，带 memory 读写与压缩日志。'
     }
   ]
 };
